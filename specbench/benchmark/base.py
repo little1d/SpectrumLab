@@ -79,6 +79,27 @@ class BaseGroup(ABC):
             print(f"Error reading file {file_path}: {e}")
             return []
 
+    def get_data_by_benchmarks(
+        self, benchmarks: Union[str, List[str]] = "all"
+    ) -> List[Dict]:
+        if benchmarks == "all":
+            benchmarks - self.get_available_benchmarks()
+        elif isinstance(benchmarks, str):
+            benchmarks = [benchmarks]
+
+        available = set(self.get_available_benchmarks())
+        invalid_benchmarks = [b for b in benchmarks if b not in available]
+        if invalid_benchmarks:
+            raise ValueError(
+                f"Invalid benchmark names: {invalid_benchmarks}. "
+                f"Available benchmarks: {list(available)}"
+            )
+
+        all_data = []
+        for benchmark in benchmarks:
+            all_data.extend(self.datasets.get(benchmark, []))
+        return all_data
+
     def get_available_benchmarks(self) -> List[str]:
         return list(self.datasets.keys())
 
