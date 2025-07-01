@@ -79,93 +79,36 @@ class BaseGroup(ABC):
             print(f"Error reading file {file_path}: {e}")
             return []
 
-    def get_benchmark_data(self, benchmark: str) -> List[Dict]:
-        """获取指定benchmark的数据"""
-        return self.datasets.get(benchmark, [])
-
     def get_available_benchmarks(self) -> List[str]:
         return list(self.datasets.keys())
 
-    def _normalize_benchmark_name(
-        self, benchmarks: Union[str, List[str]] = "all"
-    ) -> List[str]:
-        if benchmarks == "all":
-            return self.get_available_benchmarks()
-        elif isinstance(benchmarks, str):
-            return [benchmarks]
-        elif isinstance(benchmarks, list):
-            return benchmarks
-        else:
-            raise ValueError(f"Invalid benchmark name: {benchmarks}")
+    # def _normalize_benchmark_name(
+    #     self, benchmarks: Union[str, List[str]] = "all"
+    # ) -> List[str]:
+    #     if benchmarks == "all":
+    #         return self.get_available_benchmarks()
+    #     elif isinstance(benchmarks, str):
+    #         return [benchmarks]
+    #     elif isinstance(benchmarks, list):
+    #         return benchmarks
+    #     else:
+    #         raise ValueError(f"Invalid benchmark name: {benchmarks}")
 
-    def _validate_benchmark_name(self, benchmarks: List[str]) -> List[str]:
-        available = self.get_available_benchmarks()
-        valid_benchmarks = []
-        invalid_benchmarks = []
+    # def _validate_benchmark_name(self, benchmarks: List[str]) -> List[str]:
+    #     available = self.get_available_benchmarks()
+    #     valid_benchmarks = []
+    #     invalid_benchmarks = []
 
-        for benchmark in benchmarks:
-            if benchmark in available:
-                valid_benchmarks.append(benchmark)
-            else:
-                invalid_benchmarks.append(benchmark)
+    #     for benchmark in benchmarks:
+    #         if benchmark in available:
+    #             valid_benchmarks.append(benchmark)
+    #         else:
+    #             invalid_benchmarks.append(benchmark)
 
-        if invalid_benchmarks:
-            raise ValueError(
-                f"Invalid benchmark names: {invalid_benchmarks}. "
-                f"Available benchmarks: {list(available)}"
-            )
+    #     if invalid_benchmarks:
+    #         raise ValueError(
+    #             f"Invalid benchmark names: {invalid_benchmarks}. "
+    #             f"Available benchmarks: {list(available)}"
+    #         )
 
-        return valid_benchmarks
-
-    @abstractmethod
-    def _init_evaluator(self):
-        self.evaluator = get_evaluator(self.level)
-
-    @abstractmethod
-    def evaluate(self, benchmarks: Union[str, List[str]], save_dict: bool = True):
-        """automatic evaluation function
-
-        Parameters
-        ----------
-        benchmarks : Union[str, List[str]]
-            the benchmarks to evaluate
-        save_dict : bool, optional
-            save the evaluation results to a dictionary, by default True
-        """
-        pass
-
-    def evaluate_many(
-        self,
-        benchmarks: Union[str, List[str]],
-        save_dict: bool = True,
-        n_runs: int = 5,
-        random_seed: int = 42,
-    ):
-        # TODO
-        import random
-        import numpy as np
-
-        random.seed(random_seed)
-        np.random.seed(random_seed)
-
-        results = []
-        for run_idx in range(n_runs):
-            run_seed = random_seed + run_idx
-            random.seed(run_seed)
-            np.random.seed(run_seed)
-
-            result = self.evaluate(benchmarks, save_dict=False)
-            result["run_idx"] = run_idx
-            result["run_seed"] = run_seed
-            results.append(result)
-
-        return results
-
-    def __len__(self) -> int:
-        """返回可用benchmark的数量"""
-        return len(self.datasets)
-
-    def __repr__(self) -> str:
-        return (
-            f"{self.__class__.__name__}(level='{self.level}', benchmarks={len(self)})"
-        )
+    #     return valid_benchmarks

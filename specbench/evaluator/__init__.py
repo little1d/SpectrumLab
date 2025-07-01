@@ -1,6 +1,9 @@
+from .choice_evaluator import ChoiceEvaluator
+
+
 def get_evaluator(level: str):
     """
     获取评估器
-    暂时返回None，具体evaluator待实现
+    目前所有level都使用ChoiceEvaluator，后续可以根据level返回不同的evaluator
     """
-    return None
+    return ChoiceEvaluator()
