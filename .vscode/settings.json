@@ -1,0 +1,69 @@
+{
+    /** 文件夹材质 */
+    "workbench.iconTheme": "material-icon-theme",
+    /* 自定义图标关联 */
+    "material-icon-theme.folders.associations": {
+        "leaderboard": "Secure",
+        "specbench": "Api",
+    },
+    "material-icon-theme.files.associations": {},
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "eslint.format.enable": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+    /** TODO tree 配置 */
+    "todo-tree.general.tags": [
+        "TODO", // 待办
+        "FIXME", // 待修复
+        "COMPAT", // 兼容性问题
+        "WARNING" // 警告
+    ],
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "icon": "check",
+            "type": "tag",
+            "foreground": "#ffff00",
+            "iconColour": "#ffff"
+        },
+        "WARNING": {
+            "icon": "alert",
+            "type": "tag",
+            "foreground": "#ff0000",
+            "iconColour": "#ff0000"
+        },
+        "FIXME": {
+            "icon": "flame",
+            "type": "tag",
+            "foreground": "#ff0000",
+            "iconColour": "#ff0000"
+        },
+        "COMPAT": {
+            "icon": "flame",
+            "type": "tag",
+            "foreground": "#00ff00",
+            "iconColour": "#ffff"
+        }
+    },
+    /** python代码注释 */
+    "autoDocstring.docstringFormat": "numpy",
+    /** markdown格式检查 */
+    "markdownlint.config": {
+        // 允许使用html标签
+        "MD033": false,
+        // 允许首行不是level1标题
+        "MD041": false
+    },
+    /** 不显示文件夹 */
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/__pycache__": true,
+        ".idea": true
+    },
+    "python.testing.pytestEnabled": true
+}

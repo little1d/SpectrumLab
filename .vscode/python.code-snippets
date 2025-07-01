@@ -1,0 +1,21 @@
+{
+    "python-comment": {
+        "prefix": "comm",
+        "scope": "python,notebook",
+        "description": "python文件块注释",
+        "body": [
+            "# =============================================",
+            "#              ${1:SECTION TITLE}              ",
+            "# =============================================",
+        ]
+    },
+    "adapted-from": {
+        "prefix": "adapted",
+        "scope": "python,notebook",
+        "description": "添加代码改编来源注释",
+        "body": [
+            "# Adapted from: ${1:source_description}",
+            "# Source: ${2:https://github.com/example/repo}",
+        ]
+    }
+}

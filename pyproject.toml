@@ -17,7 +17,7 @@ dependencies = []
 dev = ["pytest>=7.4.0", "black>=23.0.0", "ruff>=0.1.0"]
 
 [project.scripts]
-specbench = "specbench.cli:main"
+specbench = "specbench.cli.main:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["specbench"]
