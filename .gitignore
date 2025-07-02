@@ -9,6 +9,7 @@
 .DS_Store
 
 # Environment configuration
+*.gradio/
 .env
 .python-version
 

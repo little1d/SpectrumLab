@@ -1,0 +1,377 @@
+{
+    "leaderboard_info": {
+        "total_models": 5
+    },
+    "models": [
+        {
+            "name": "GPT-4o",
+            "name_link": "https://openai.com/gpt-4",
+            "submitter": "OpenAI Team",
+            "submitter_link": "mailto:research@openai.com",
+            "submission_time": "2025-01-02T10:30:00Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 85.2,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 80.0
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 90.0
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 85.0
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 85.8
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 72.5,
+                    "subcategories": {
+                        "Peak Identification": {
+                            "accuracy": 75.2
+                        },
+                        "Baseline Correction": {
+                            "accuracy": 68.9
+                        },
+                        "Noise Assessment": {
+                            "accuracy": 73.4
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 68.3,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 72.1
+                        },
+                        "Molecular Structure Analysis": {
+                            "accuracy": 65.8
+                        },
+                        "Chemical Property Prediction": {
+                            "accuracy": 67.0
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 45.8,
+                    "subcategories": {
+                        "Conditional Spectrum Generation": {
+                            "accuracy": 42.3
+                        },
+                        "Spectrum Completion": {
+                            "accuracy": 49.2
+                        }
+                    }
+                }
+            },
+            "model_info": {
+                "homepage": "https://openai.com/gpt-4",
+                "paper": "https://arxiv.org/abs/2303.08774",
+                "code": "",
+                "description": "GPT-4 with vision capabilities for multimodal understanding"
+            }
+        },
+        {
+            "name": "DeepSeek-V3",
+            "name_link": "https://www.deepseek.com/",
+            "submitter": "DeepSeek Team",
+            "submitter_link": "https://github.com/deepseek-ai",
+            "submission_time": "2025-01-01T14:20:00Z",
+            "model_type": "open_source",
+            "model_size": "671B",
+            "is_multimodal": false,
+            "results": {
+                "Signal": {
+                    "accuracy": null,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": null
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": null
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": null
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": null
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": null,
+                    "subcategories": {
+                        "Peak Identification": {
+                            "accuracy": null
+                        },
+                        "Baseline Correction": {
+                            "accuracy": null
+                        },
+                        "Noise Assessment": {
+                            "accuracy": null
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 65.8,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 68.9
+                        },
+                        "Molecular Structure Analysis": {
+                            "accuracy": 63.2
+                        },
+                        "Chemical Property Prediction": {
+                            "accuracy": 65.3
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 60.1,
+                    "subcategories": {
+                        "Conditional Spectrum Generation": {
+                            "accuracy": 58.7
+                        },
+                        "Spectrum Completion": {
+                            "accuracy": 61.4
+                        }
+                    }
+                }
+            },
+            "model_info": {
+                "homepage": "https://www.deepseek.com/",
+                "paper": "https://arxiv.org/abs/2412.19437",
+                "code": "https://github.com/deepseek-ai/DeepSeek-V3",
+                "description": "DeepSeek-V3: A large-scale mixture-of-experts language model (only tested on text-based benchmarks)"
+            }
+        },
+        {
+            "name": "Claude-3.5-Sonnet",
+            "name_link": "https://www.anthropic.com/claude",
+            "submitter": "Anthropic Team",
+            "submitter_link": "mailto:support@anthropic.com",
+            "submission_time": "2024-12-28T09:15:00Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 78.6,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 82.0
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 76.0
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": null
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 78.4
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": null,
+                    "subcategories": {
+                        "Peak Identification": {
+                            "accuracy": null
+                        },
+                        "Baseline Correction": {
+                            "accuracy": null
+                        },
+                        "Noise Assessment": {
+                            "accuracy": null
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 61.7,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 64.2
+                        },
+                        "Molecular Structure Analysis": {
+                            "accuracy": 58.9
+                        },
+                        "Chemical Property Prediction": {
+                            "accuracy": null
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": null,
+                    "subcategories": {
+                        "Conditional Spectrum Generation": {
+                            "accuracy": null
+                        },
+                        "Spectrum Completion": {
+                            "accuracy": null
+                        }
+                    }
+                }
+            },
+            "model_info": {
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 3.5 Sonnet with advanced reasoning and multimodal capabilities (partial evaluation)"
+            }
+        },
+        {
+            "name": "Qwen2.5-7B-Instruct",
+            "name_link": "https://qwenlm.github.io/",
+            "submitter": "Alibaba DAMO Academy",
+            "submitter_link": "https://damo.alibaba.com/",
+            "submission_time": "2024-12-25T16:45:00Z",
+            "model_type": "open_source",
+            "model_size": "7B",
+            "is_multimodal": false,
+            "results": {
+                "Signal": {
+                    "accuracy": null,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": null
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": null
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": null
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": null
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": null,
+                    "subcategories": {
+                        "Peak Identification": {
+                            "accuracy": null
+                        },
+                        "Baseline Correction": {
+                            "accuracy": null
+                        },
+                        "Noise Assessment": {
+                            "accuracy": null
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 48.4,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 51.8
+                        },
+                        "Molecular Structure Analysis": {
+                            "accuracy": null
+                        },
+                        "Chemical Property Prediction": {
+                            "accuracy": 45.1
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": null,
+                    "subcategories": {
+                        "Conditional Spectrum Generation": {
+                            "accuracy": null
+                        },
+                        "Spectrum Completion": {
+                            "accuracy": null
+                        }
+                    }
+                }
+            },
+            "model_info": {
+                "homepage": "https://qwenlm.github.io/",
+                "paper": "https://arxiv.org/abs/2407.10671",
+                "code": "https://github.com/QwenLM/Qwen2.5",
+                "description": "Qwen2.5-7B tested only on selected semantic tasks"
+            }
+        },
+        {
+            "name": "Random Baseline",
+            "name_link": "",
+            "submitter": "Specbench Team",
+            "submitter_link": "mailto:specbench@example.com",
+            "submission_time": "2024-12-20T12:00:00Z",
+            "model_type": "baseline",
+            "model_size": "N/A",
+            "is_multimodal": false,
+            "results": {
+                "Signal": {
+                    "accuracy": 25.0,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 25.0
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 25.0
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 25.0
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 25.0
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 25.0,
+                    "subcategories": {
+                        "Peak Identification": {
+                            "accuracy": 25.0
+                        },
+                        "Baseline Correction": {
+                            "accuracy": 25.0
+                        },
+                        "Noise Assessment": {
+                            "accuracy": 25.0
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 25.0,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 25.0
+                        },
+                        "Molecular Structure Analysis": {
+                            "accuracy": 25.0
+                        },
+                        "Chemical Property Prediction": {
+                            "accuracy": 25.0
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 25.0,
+                    "subcategories": {
+                        "Conditional Spectrum Generation": {
+                            "accuracy": 25.0
+                        },
+                        "Spectrum Completion": {
+                            "accuracy": 25.0
+                        }
+                    }
+                }
+            },
+            "model_info": {
+                "homepage": "",
+                "paper": "",
+                "code": "",
+                "description": "Random baseline for comparison, assuming 4-choice questions"
+            }
+        }
+    ]
+}
