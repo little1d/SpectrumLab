@@ -1,6 +1,7 @@
 import re
 from typing import List, Dict
 from .base import BaseEvaluator
+from specbench.utils.image_utils import prepare_images_for_prompt, normalize_image_paths
 
 
 class ChoiceEvaluator(BaseEvaluator):
@@ -8,16 +9,15 @@ class ChoiceEvaluator(BaseEvaluator):
         super().__init__(prediction_key)
 
     def _build_prompt(self, item: Dict) -> str:
-        # TODO: for question contains images, we need to add image to the prompt
-        """Build prompt for choice question."""
         question = item.get("question", "")
         choices = item.get("choices", [])
+        image_paths_field = item.get("image_path")
 
-        # Build options
+        # 构建选项文本
         option_lines = [f"{chr(65 + i)}. {choice}" for i, choice in enumerate(choices)]
         options_block = "\n".join(option_lines)
 
-        prompt_parts = [
+        text_parts = [
             f"Question: {question}",
             "",
             "Available options:",
@@ -30,7 +30,21 @@ class ChoiceEvaluator(BaseEvaluator):
             "Your response:",
         ]
 
-        return "\n".join(prompt_parts)
+        text_content = "\n".join(text_parts)
+
+        # Check if there are images
+        image_paths = normalize_image_paths(image_paths_field)
+
+        if image_paths:
+            # Prepare image data
+            image_data = prepare_images_for_prompt(image_paths)
+
+            if image_data:
+                # Return multimodal format
+                return {"text": text_content, "images": image_data}
+
+        # Return pure text format
+        return text_content
 
     def _extract_prediction(self, response: str, item: Dict) -> str:
         """Extract prediction from model response using \\box{} pattern."""
