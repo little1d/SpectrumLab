@@ -3,6 +3,7 @@ from typing import List, Dict, Any, Optional
 from pathlib import Path
 import json
 from datetime import datetime
+from tqdm import tqdm
 
 
 class BaseEvaluator(ABC):
@@ -44,16 +45,34 @@ class BaseEvaluator(ABC):
         print("🚀 Running model inference...")
         try:
             if hasattr(model, "batch_generate") and batch_size != 1:
+                print(f"   Using batch generation...")
                 responses = model.batch_generate(prompts, max_out_len)
             else:
-                responses = [model.generate(prompt, max_out_len) for prompt in prompts]
+                print(f"   Using sequential generation...")
+                responses = []
+                # Use tqdm to display progress bar
+                for i, prompt in enumerate(
+                    tqdm(prompts, desc="Generating responses", unit="item")
+                ):
+                    try:
+                        response = model.generate(prompt, max_out_len)
+                        responses.append(response)
+                    except Exception as e:
+                        print(f"\n⚠️  Error on item {i+1}: {e}")
+                        responses.append(f"Error: {str(e)}")
+
         except Exception as e:
             return {"error": f"Model generation failed: {e}"}
 
         # 3. Extract predictions and add to data
         print("🔍 Extracting predictions...")
         processed_items = []
-        for item, response in zip(data_items, responses):
+        for item, response in tqdm(
+            zip(data_items, responses),
+            desc="Processing responses",
+            total=len(data_items),
+            unit="item",
+        ):
             item_copy = item.copy()
             prediction = self._extract_prediction(response, item)
             item_copy[self.prediction_key] = prediction

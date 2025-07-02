@@ -4,6 +4,7 @@ from typing import List, Dict, Optional, Union
 import json
 
 
+
 class BaseGroup(ABC):
     def __init__(self, level: str, path: str = "./data"):
         self.level = level
