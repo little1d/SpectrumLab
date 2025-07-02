@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any, Optional
+from pathlib import Path
+import json
+from datetime import datetime
 
 
 class BaseEvaluator(ABC):
@@ -11,99 +14,214 @@ class BaseEvaluator(ABC):
         pass
 
     @abstractmethod
-    def _extract_prection(self, response: str, item: Dict) -> str:
+    def _extract_prediction(self, response: str, item: Dict) -> str:
         pass
 
     @abstractmethod
-    def _calculate_metrics(self, data_with_predictions: List[Dict]) -> Dict:
+    def _calculate_accuracy(self, data_with_predictions: List[Dict]) -> Dict:
         pass
 
-    @abstractmethod
     def evaluate(
         self,
         data_items: List[Dict],
         model,
         max_out_len: int = 512,
         batch_size: Optional[int] = None,
-        save_dict: bool = False,
         save_path: str = "./eval_results",
     ) -> Dict:
         if not data_items:
             print("❌ No data items provided")
-            return ""
+            return {"error": "No data items provided"}
 
         print(f"🔄 Starting evaluation on {len(data_items)} items...")
-        print(f"Model: {repr(model)}")
+        print(f"📝 Model: {type(model).__name__}")
 
-        # 1. build prompts
-        print(f"📝  Building prmopts...")
+        # 1. Build prompts
+        print("📝 Building prompts...")
         prompts = [self._build_prompt(item) for item in data_items]
 
-        # 2. run model inference
-        print(f"🚀 Running model inference...")
+        # 2. Run model inference
+        print("🚀 Running model inference...")
         try:
-            responses = model.generate(prompts, max_out_len)
+            if hasattr(model, "batch_generate") and batch_size != 1:
+                responses = model.batch_generate(prompts, max_out_len)
+            else:
+                responses = [model.generate(prompt, max_out_len) for prompt in prompts]
         except Exception as e:
             return {"error": f"Model generation failed: {e}"}
 
-        # 3. extract predictions
-        print(f"📝  Extracting predictions...")
-        model_predictions = []
+        # 3. Extract predictions and add to data
+        print("🔍 Extracting predictions...")
+        processed_items = []
         for item, response in zip(data_items, responses):
             item_copy = item.copy()
-            prediction = self._extract_prection(response, item)
+            prediction = self._extract_prediction(response, item)
             item_copy[self.prediction_key] = prediction
-            # item_copy["model_response"] = response # original response
-            model_predictions.append(item_copy)
+            item_copy["model_response"] = response
 
-        # 4. save results
-        save_file = self._save_results(model_predictions, save_path)
-        print(f"💾 Results saved to {save_file}")
+            answer = item.get("answer", "")
+            is_correct = self._calculate_accuracy(answer, prediction, item)
+            item_copy["pass"] = is_correct
 
-        # 5. calculate metrics
-        print(f"🔄 Calculating metrics...")
-        results = self.calculate_metrics(model_predictions)
+            processed_items.append(item_copy)
 
-        return results
+        # 4. Save results
+        saved_files = self._save_results(processed_items, save_path)
+        print(f"💾 Results saved to: {saved_files}")
+
+        # 5. Calculate metrics
+        print("📊 Calculating metrics...")
+        metrics = self._calculate_metrics(processed_items)
+
+        # 6. Print results
+        self._print_results(metrics)
+
+        return {
+            "metrics": metrics,
+            "saved_files": saved_files,
+            "total_items": len(data_items),
+        }
 
     def evaluate_many():
         # TODO
         pass
 
-    def _save_results(self, results: Dict, save_path: str, suffix: str = ""):
-        pass
+    def _save_results(self, results_data: List[Dict], save_path: str) -> List[str]:
+        """Save results grouped by subcategory."""
+        if not results_data:
+            return []
 
-    def _print_results(self, results: Dict):
-        # TODO
-        # print("\n" + "=" * 60)
-        # print("EVALUATION RESULTS")
-        # print("=" * 60)
+        save_dir = Path(save_path)
+        save_dir.mkdir(parents=True, exist_ok=True)
 
-        # # 总体准确率
-        # if "overall" in results:
-        #     overall = results["overall"]
-        #     print(
-        #         f"Overall Accuracy: {overall['accuracy']:.2f}% ({overall['correct']}/{overall['total']})"
-        #     )
+        # Group by subcategory
+        subcategory_data = {}
+        for item in results_data:
+            sub_category = item.get("sub_category", "Unknown")
+            if sub_category not in subcategory_data:
+                subcategory_data[sub_category] = []
+            subcategory_data[sub_category].append(item)
 
-        # # Category-wise accuracy
-        # if "category_metrics" in results:
-        #     print("\nCategory-wise Accuracy:")
-        #     for category, metrics in results["category_metrics"].items():
-        #         print(
-        #             f"  {category}: {metrics['accuracy']:.2f}% ({metrics['correct']}/{metrics['total']})"
-        #         )
+        # Save each subcategory
+        saved_files = []
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-        # # Sub-category-wise accuracy
-        # if "subcat_metrics" in results:
-        #     print("\nSub-category-wise Accuracy:")
-        #     for subcat, metrics in results["subcat_metrics"].items():
-        #         print(
-        #             f"  {subcat}: {metrics['accuracy']:.2f}% ({metrics['correct']}/{metrics['total']})"
-        #         )
+        for sub_category, data_list in subcategory_data.items():
+            safe_name = sub_category.replace(" ", "_").replace("/", "_")
+            filename = f"{safe_name}_{timestamp}.json"
+            filepath = save_dir / filename
 
-        # if "no_prediction_count" in results and results["no_prediction_count"] > 0:
-        #     print(f"\n⚠️  No prediction count: {results['no_prediction_count']}")
+            try:
+                with open(filepath, "w", encoding="utf-8") as f:
+                    json.dump(data_list, f, indent=2, ensure_ascii=False)
+                saved_files.append(str(filepath))
+                print(f"  ✅ Saved {len(data_list)} items to {filename}")
+            except Exception as e:
+                print(f"❌ Failed to save {sub_category}: {e}")
 
-        # print("=" * 60)
-        pass
+        return saved_files
+
+    def _calculate_metrics(self, processed_items: List[Dict]) -> Dict:
+        if not processed_items:
+            return {}
+
+        # Overall metrics
+        total = len(processed_items)
+        correct = 0
+        no_prediction = 0
+
+        # Category and subcategory metrics
+        category_stats = {}
+        subcategory_stats = {}
+
+        for item in processed_items:
+            answer = item.get("answer", "")
+            prediction = item.get(self.prediction_key, "")
+            category = item.get("category", "Unknown")
+            sub_category = item.get("sub_category", "Unknown")
+
+            # Check if prediction exists
+            if not prediction or prediction.strip() == "":
+                no_prediction += 1
+
+            # Use the pre-calculated "pass" field
+            is_correct = item.get("pass", False)
+            if is_correct:
+                correct += 1
+
+            # Update category stats
+            if category not in category_stats:
+                category_stats[category] = {"correct": 0, "total": 0}
+            category_stats[category]["total"] += 1
+            if is_correct:
+                category_stats[category]["correct"] += 1
+
+            # Update subcategory stats
+            if sub_category not in subcategory_stats:
+                subcategory_stats[sub_category] = {"correct": 0, "total": 0}
+            subcategory_stats[sub_category]["total"] += 1
+            if is_correct:
+                subcategory_stats[sub_category]["correct"] += 1
+
+        # Calculate percentages
+        overall_accuracy = (correct / total * 100) if total > 0 else 0
+
+        for stats in category_stats.values():
+            stats["accuracy"] = (
+                (stats["correct"] / stats["total"] * 100) if stats["total"] > 0 else 0
+            )
+
+        for stats in subcategory_stats.values():
+            stats["accuracy"] = (
+                (stats["correct"] / stats["total"] * 100) if stats["total"] > 0 else 0
+            )
+
+        return {
+            "overall": {
+                "accuracy": overall_accuracy,
+                "correct": correct,
+                "total": total,
+                "no_prediction_count": no_prediction,
+            },
+            "category_metrics": category_stats,
+            "subcategory_metrics": subcategory_stats,
+        }
+
+    def _print_results(self, metrics: Dict):
+        """Print evaluation results."""
+        if not metrics:
+            return
+
+        print("\n" + "=" * 60)
+        print("EVALUATION RESULTS")
+        print("=" * 60)
+
+        # Overall accuracy
+        if "overall" in metrics:
+            overall = metrics["overall"]
+            print(
+                f"Overall Accuracy: {overall['accuracy']:.2f}% ({overall['correct']}/{overall['total']})"
+            )
+
+        # Category-wise accuracy
+        if "category_metrics" in metrics:
+            print("\nCategory-wise Accuracy:")
+            for category, stats in metrics["category_metrics"].items():
+                print(
+                    f"  {category}: {stats['accuracy']:.2f}% ({stats['correct']}/{stats['total']})"
+                )
+
+        # Sub-category-wise accuracy
+        if "subcategory_metrics" in metrics:
+            print("\nSub-category-wise Accuracy:")
+            for subcat, stats in metrics["subcategory_metrics"].items():
+                print(
+                    f"  {subcat}: {stats['accuracy']:.2f}% ({stats['correct']}/{stats['total']})"
+                )
+
+        if "overall" in metrics and metrics["overall"]["no_prediction_count"] > 0:
+            print(
+                f"\n⚠️  No prediction count: {metrics['overall']['no_prediction_count']}"
+            )
+
+        print("=" * 60)
