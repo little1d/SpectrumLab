@@ -8,7 +8,7 @@ class ChoiceEvaluator(BaseEvaluator):
         super().__init__(prediction_key)
 
     def _build_prompt(self, item: Dict) -> str:
-        # TODO: for question contains images, we need to
+        # TODO: for question contains images, we need to add image to the prompt
         """Build prompt for choice question."""
         question = item.get("question", "")
         choices = item.get("choices", [])
