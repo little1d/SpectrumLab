@@ -19,6 +19,3 @@ class BaseAPIModel(BaseModel):
     @abstractmethod
     def generate(self, prompt: str, max_out_len: int = 512) -> str:
         pass
-
-    def batch_generate(self, prompts: List[str], max_out_len: int = 512) -> List[str]:
-        return [self.generate(prompt, max_out_len) for prompt in prompts]

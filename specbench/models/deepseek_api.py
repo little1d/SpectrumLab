@@ -52,18 +52,3 @@ class DeepSeek(BaseAPIModel):
             return response.choices[0].message.content
         except Exception as e:
             raise RuntimeError(f"DeepSeek API call failed: {e}")
-
-    def batch_generate(
-        self, prompts: List[str], max_tokens: int = 512, json_output=False
-    ) -> List[str]:
-        results = []
-
-        for prompt in prompts:
-            try:
-                result = self.generate(prompt, max_tokens, json_output)
-                results.append(result)
-            except Exception as e:
-                print(f"Error generating response for prompt: {e}")
-                results.append(f"Error: {str(e)}")
-
-        return results

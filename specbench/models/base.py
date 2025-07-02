@@ -22,16 +22,3 @@ class BaseModel(ABC):
             Generated response string
         """
         pass
-
-    def batch_generate(self, prompts: List[str], max_out_len: int = 512) -> List[str]:
-        """
-        Generate responses for multiple prompts.
-
-        Args:
-            prompts: List of input prompt strings
-            max_out_len: Maximum output length per response
-
-        Returns:
-            List of generated response strings
-        """
-        return [self.generate(prompt, max_out_len) for prompt in prompts]

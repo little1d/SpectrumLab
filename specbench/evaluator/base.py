@@ -43,23 +43,18 @@ class BaseEvaluator(ABC):
 
         # 2. Run model inference
         print("🚀 Running model inference...")
+        responses = []
         try:
-            if hasattr(model, "batch_generate") and batch_size != 1:
-                print(f"   Using batch generation...")
-                responses = model.batch_generate(prompts, max_out_len)
-            else:
-                print(f"   Using sequential generation...")
-                responses = []
-                # Use tqdm to display progress bar
-                for i, prompt in enumerate(
-                    tqdm(prompts, desc="Generating responses", unit="item")
-                ):
-                    try:
-                        response = model.generate(prompt, max_out_len)
-                        responses.append(response)
-                    except Exception as e:
-                        print(f"\n⚠️  Error on item {i+1}: {e}")
-                        responses.append(f"Error: {str(e)}")
+            # 统一使用sequential generation with progress bar
+            for i, prompt in enumerate(
+                tqdm(prompts, desc="Generating responses", unit="item")
+            ):
+                try:
+                    response = model.generate(prompt, max_out_len)
+                    responses.append(response)
+                except Exception as e:
+                    print(f"\n⚠️  Error on item {i+1}: {e}")
+                    responses.append(f"Error: {str(e)}")
 
         except Exception as e:
             return {"error": f"Model generation failed: {e}"}
