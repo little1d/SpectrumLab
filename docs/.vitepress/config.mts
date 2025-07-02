@@ -4,6 +4,16 @@ import { zh } from './zh'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/spectral-hub/',
+  themeConfig: {
+    lastUpdated: {
+      text: "Updated at",
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium',
+      },
+    },
+  },
   markdown: {
     image: {
       lazyLoading: true,
