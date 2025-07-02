@@ -1,15 +1,10 @@
 from typing import List, Dict, Any, Optional
 from .base_api import BaseAPIModel
 from specbench.config import Config
+from openai import OpenAI
 
 
-class DeepSeekAPI(BaseAPIModel):
-    """
-    DeepSeek API model implementation.
-
-    Uses simplified configuration system to load API credentials and settings.
-    """
-
+class DeepSeek(BaseAPIModel):
     def __init__(
         self,
         api_key: Optional[str] = None,
@@ -31,25 +26,44 @@ class DeepSeekAPI(BaseAPIModel):
                 "or provide api_key parameter."
             )
 
+        self.client = OpenAI(
+            api_key=self.api_key,
+            base_url=self.base_url,
+        )
+
         # Initialize parent class
-        super().__init__(path=self.model_name, **kwargs)
+        super().__init__(model_name=self.model_name, **kwargs)
 
-        print(f"DeepSeek API initialized:")
-        print(f"  Model: {self.model_name}")
-        print(f"  Base URL: {self.base_url}")
-        print(f"  API Key: {'✓ SET' if self.api_key else '✗ NOT SET'}")
+    def generate(self, prompt: str, max_tokens: int = 512, json_output=False) -> str:
+        messages = []
 
-    def generate(self, prompt: str, max_out_len: int = 512) -> str:
-        # TODO: Implement actual API call logic
-        # For now, return a placeholder response
+        if json_output:
+            messages.append({"role": "system", "content": "response in JSON format"})
 
-        print(f"[DeepSeek API] Generating response for prompt (length: {len(prompt)})")
-        print(f"[DeepSeek API] Using model: {self.model_name}")
-        print(f"[DeepSeek API] Max output length: {max_out_len}")
+        messages.append({"role": "user", "content": prompt})
 
-        # Placeholder response
-        return f"[DeepSeek Response] This is a placeholder response for the prompt: {prompt[:100]}..."
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=messages,
+                max_tokens=max_tokens,
+                stream=False,
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            raise RuntimeError(f"DeepSeek API call failed: {e}")
 
-    def batch_generate(self, prompts: List[str], max_out_len: int = 512) -> List[str]:
-        print(f"[DeepSeek API] Batch generating {len(prompts)} responses")
-        return super().batch_generate(prompts, max_out_len)
+    def batch_generate(
+        self, prompts: List[str], max_tokens: int = 512, json_output=False
+    ) -> List[str]:
+        results = []
+
+        for prompt in prompts:
+            try:
+                result = self.generate(prompt, max_tokens, json_output)
+                results.append(result)
+            except Exception as e:
+                print(f"Error generating response for prompt: {e}")
+                results.append(f"Error: {str(e)}")
+
+        return results
