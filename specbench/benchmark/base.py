@@ -4,11 +4,11 @@ from typing import List, Dict, Optional, Union
 import json
 
 
-
 class BaseGroup(ABC):
     def __init__(self, level: str, path: str = "./data"):
         self.level = level
-        self.path = Path(path)
+        self.data_root = Path(path).resolve()
+        self.path = self.data_root / self.level
         self.datasets = {}
         self._load_datasets()
 
@@ -16,28 +16,25 @@ class BaseGroup(ABC):
         """
         Load benchmark datasets for the current level.
         """
-        local_level_path = self.path / self.level
-
         print(f"Loading datasets for level '{self.level}'...")
-        print(f"Looking for local datasets in: {local_level_path}")
+        print(f"Looking for local datasets in: {self.path}")
 
-        if local_level_path.exists() and local_level_path.is_dir():
+        if self.path.exists() and self.path.is_dir():
             print("✅ Local datasets found, loading...")
-            self._load_from_local(local_level_path)
+            self._load_from_local(self.path)
         else:
             print("❌ Local datasets not found, falling back to HuggingFace...")
-            self._load_from_remote(local_level_path)
+            self._load_from_remote(self.path)
 
         print(
             f"📊 Total available sub-categories in '{self.level}' level: {len(self.datasets)}"
         )
         print(f"📋 Available sub-categories: {list(self.datasets.keys())}")
 
-    def _load_from_local(self, local_level_path: Path):
-        """从本地加载数据"""
+    def _load_from_local(self, level_path: Path):
         self.datasets = {}
 
-        for sub_category_dir in local_level_path.iterdir():
+        for sub_category_dir in level_path.iterdir():
             if not sub_category_dir.is_dir():
                 continue
             sub_category_name = sub_category_dir.name
@@ -63,11 +60,26 @@ class BaseGroup(ABC):
         # TODO
         self.datasets = {}
 
+    def _fix_image_path(self, image_path: str) -> str:
+        if not image_path or not image_path.strip():
+            return image_path
+        if image_path.startswith("./data/"):
+            relative_part = image_path[7:]
+            corrected_path = self.data_root / relative_part
+            return str(corrected_path)
+        return image_path
+
     def _load_json(self, file_path: Path) -> List[Dict]:
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 if isinstance(data, list):
+                    for item in data:
+                        if isinstance(item, dict) and "image_path" in item:
+                            if item["image_path"]:
+                                original_path = item["image_path"]
+                                item["image_path"] = self._fix_image_path(original_path)
+
                     return data
                 else:
                     print(f"Warning: Expected list in {file_path}, got {type(data)}")
