@@ -21,15 +21,16 @@ class BaseGroup(ABC):
         print(f"Looking for local datasets in: {local_level_path}")
 
         if local_level_path.exists() and local_level_path.is_dir():
-            print("✔ Local datasets found, loading …")
+            print("✅ Local datasets found, loading...")
             self._load_from_local(local_level_path)
         else:
-            print("✖ Local datasets not found, falling back to HuggingFace …")
+            print("❌ Local datasets not found, falling back to HuggingFace...")
             self._load_from_remote(local_level_path)
 
         print(
-            f"Loaded {len(self.datasets)} sub-categories: {list(self.datasets.keys())}"
+            f"📊 Total available sub-categories in '{self.level}' level: {len(self.datasets)}"
         )
+        print(f"📋 Available sub-categories: {list(self.datasets.keys())}")
 
     def _load_from_local(self, local_level_path: Path):
         """从本地加载数据"""
@@ -82,8 +83,14 @@ class BaseGroup(ABC):
     ) -> List[Dict]:
         if subcategories == "all":
             subcategories = self.get_available_subcategories()
+            print(
+                f"🔍 Selecting all available sub-categories ({len(subcategories)} total)"
+            )
         elif isinstance(subcategories, str):
             subcategories = [subcategories]
+            print(f"🔍 Selecting sub-category: '{subcategories[0]}'")
+        else:
+            print(f"🔍 Selecting {len(subcategories)} sub-categories: {subcategories}")
 
         available = set(self.get_available_subcategories())
         invalid_subcategories = [s for s in subcategories if s not in available]
@@ -94,8 +101,14 @@ class BaseGroup(ABC):
             )
 
         all_data = []
+        total_items = 0
         for subcategory in subcategories:
-            all_data.extend(self.datasets.get(subcategory, []))
+            category_data = self.datasets.get(subcategory, [])
+            all_data.extend(category_data)
+            total_items += len(category_data)
+            print(f"  📦 '{subcategory}': {len(category_data)} items")
+
+        print(f"✅ Total selected items: {total_items}")
         return all_data
 
     def get_available_subcategories(self) -> List[str]:
