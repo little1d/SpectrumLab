@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import List, Dict, Optional, Union
 import json
-from specbench.evaluator import get_evaluator
 
 
 class BaseGroup(ABC):
@@ -10,7 +9,6 @@ class BaseGroup(ABC):
         self.level = level
         self.path = Path(path)
         self.datasets = {}
-        self._init_evaluator()
         self._load_datasets()
 
     def _load_datasets(self):
@@ -79,57 +77,26 @@ class BaseGroup(ABC):
             print(f"Error reading file {file_path}: {e}")
             return []
 
-    def get_data_by_benchmarks(
-        self, benchmarks: Union[str, List[str]] = "all"
+    def get_data_by_subcategories(
+        self, subcategories: Union[str, List[str]] = "all"
     ) -> List[Dict]:
-        if benchmarks == "all":
-            benchmarks - self.get_available_benchmarks()
-        elif isinstance(benchmarks, str):
-            benchmarks = [benchmarks]
+        if subcategories == "all":
+            subcategories = self.get_available_subcategories()
+        elif isinstance(subcategories, str):
+            subcategories = [subcategories]
 
-        available = set(self.get_available_benchmarks())
-        invalid_benchmarks = [b for b in benchmarks if b not in available]
-        if invalid_benchmarks:
+        available = set(self.get_available_subcategories())
+        invalid_subcategories = [s for s in subcategories if s not in available]
+        if invalid_subcategories:
             raise ValueError(
-                f"Invalid benchmark names: {invalid_benchmarks}. "
-                f"Available benchmarks: {list(available)}"
+                f"Invalid subcategory names: {invalid_subcategories}. "
+                f"Available subcategories: {list(available)}"
             )
 
         all_data = []
-        for benchmark in benchmarks:
-            all_data.extend(self.datasets.get(benchmark, []))
+        for subcategory in subcategories:
+            all_data.extend(self.datasets.get(subcategory, []))
         return all_data
 
-    def get_available_benchmarks(self) -> List[str]:
+    def get_available_subcategories(self) -> List[str]:
         return list(self.datasets.keys())
-
-    # def _normalize_benchmark_name(
-    #     self, benchmarks: Union[str, List[str]] = "all"
-    # ) -> List[str]:
-    #     if benchmarks == "all":
-    #         return self.get_available_benchmarks()
-    #     elif isinstance(benchmarks, str):
-    #         return [benchmarks]
-    #     elif isinstance(benchmarks, list):
-    #         return benchmarks
-    #     else:
-    #         raise ValueError(f"Invalid benchmark name: {benchmarks}")
-
-    # def _validate_benchmark_name(self, benchmarks: List[str]) -> List[str]:
-    #     available = self.get_available_benchmarks()
-    #     valid_benchmarks = []
-    #     invalid_benchmarks = []
-
-    #     for benchmark in benchmarks:
-    #         if benchmark in available:
-    #             valid_benchmarks.append(benchmark)
-    #         else:
-    #             invalid_benchmarks.append(benchmark)
-
-    #     if invalid_benchmarks:
-    #         raise ValueError(
-    #             f"Invalid benchmark names: {invalid_benchmarks}. "
-    #             f"Available benchmarks: {list(available)}"
-    #         )
-
-    #     return valid_benchmarks
