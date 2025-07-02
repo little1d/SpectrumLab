@@ -1,10 +1,17 @@
+# Build artifacts
 /dist/
 
+# Virtual environments & Python cache
 *.venv/
 *__pycache__/
+
+# System files
 .DS_Store
+
+# Environment configuration
+.env
 .python-version
 
+# Local data & playground
 data/
-
 playground/
