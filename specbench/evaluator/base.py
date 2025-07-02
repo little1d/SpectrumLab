@@ -6,8 +6,8 @@ from datetime import datetime
 
 
 class BaseEvaluator(ABC):
-    def __init__(self):
-        pass
+    def __init__(self, prediction_key: str = "model_prediction"):
+        self.prediction_key = prediction_key
 
     @abstractmethod
     def _build_prompt(self, item: Dict) -> str:
@@ -18,7 +18,7 @@ class BaseEvaluator(ABC):
         pass
 
     @abstractmethod
-    def _calculate_accuracy(self, data_with_predictions: List[Dict]) -> Dict:
+    def _calculate_accuracy(self, answer: str, prediction: str, item: Dict) -> bool:
         pass
 
     def evaluate(
