@@ -15,3 +15,8 @@ class Config:
     deepseek_api_key: str = os.getenv("DEEPSEEK_API_KEY")
     deepseek_base_url: str = os.getenv("DEEPSEEK_BASE_URL")
     deepseek_model_name: str = os.getenv("DEEPSEEK_MODEL_NAME")
+
+    # GPT-4o API Configuration
+    gpt4o_api_key: str = os.getenv("GPT4O_API_KEY")
+    gpt4o_base_url: str = os.getenv("GPT4O_BASE_URL")
+    gpt4o_model_name: str = os.getenv("GPT4O_MODEL_NAME")
