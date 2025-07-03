@@ -1,0 +1,21 @@
+/* 自定义 CSS 变量 */
+:root {
+    --vp-c-brand-1: #646cff;
+    --vp-c-brand-2: #747bff;
+    --vp-c-brand-3: #535bf2;
+}
+
+/* 深色模式下的品牌色 */
+.dark {
+    --vp-c-brand-1: #c9cbff;
+    --vp-c-brand-2: #a6a9ff;
+    --vp-c-brand-3: #8285f4;
+}
+
+/* 自定义样式 */
+.VPHero .name {
+    background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

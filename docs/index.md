@@ -11,7 +11,7 @@ hero:
       link: /zh/getting-started
     - theme: alt
       text: 查看源码
-      link: https://github.com/your-username/spectral-hub
+      link: https://github.com/little1d/spectral-hub
 
 features:
   - title: 简单易用

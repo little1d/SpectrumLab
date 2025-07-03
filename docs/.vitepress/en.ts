@@ -2,14 +2,16 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export const en = defineConfig({
+    lang: 'en-US',
     title: "Spectral-Hub",
     description: "An Excellent Toolkit for Spectral Benchmark.",
-    lang: 'en-US',
+
     themeConfig: {
         nav: [
             { text: 'Home', link: '/en/' },
-            { text: 'Quick Start', link: '/en/quick-start' },
-            { text: 'API', link: '/en/api-examples' },
+            { text: 'Tutorial', link: '/en/tutorial' },
+            { text: 'API', link: '/en/api' },
+            { text: 'Benchmark', link: '/en/benchmark' },
         ],
         sidebar: {
             '/en/': [
@@ -17,14 +19,14 @@ export const en = defineConfig({
                     text: 'Getting Started',
                     items: [
                         { text: 'Introduction', link: '/en/' },
-                        { text: 'Quick Start', link: '/en/quick-start' },
+                        { text: 'Tutorial', link: '/en/tutorial' },
                     ]
                 },
                 {
-                    text: 'Examples',
+                    text: 'Documentation',
                     items: [
-                        { text: 'API Examples', link: '/en/api-examples' },
-                        { text: 'Markdown Examples', link: '/en/markdown-examples' },
+                        { text: 'API Reference', link: '/en/api' },
+                        { text: 'Benchmark', link: '/en/benchmark' },
                     ]
                 }
             ]
@@ -32,6 +34,24 @@ export const en = defineConfig({
         footer: {
             message: 'Released under the MIT License',
             copyright: 'Copyright © 2024 Spectral-Hub'
-        }
+        },
+
+        // 英文版本的组件文本
+        docFooter: {
+            prev: 'Previous page',
+            next: 'Next page'
+        },
+
+        outline: {
+            label: 'On this page'
+        },
+
+        lastUpdated: {
+            text: 'Last updated'
+        },
+
+        darkModeSwitchLabel: 'Appearance',
+        lightModeSwitchTitle: 'Switch to light theme',
+        darkModeSwitchTitle: 'Switch to dark theme',
     }
 })
