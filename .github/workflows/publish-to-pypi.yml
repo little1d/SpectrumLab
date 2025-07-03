@@ -12,7 +12,7 @@ on:
         default: false
         type: boolean
       version:
-        description: 'Version to publish (e.g., 0.1.0) - required for manual testing'
+        description: 'Version to publish (e.g., 0.1.0)'
         required: true
         type: string
 
@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write
     
     steps:
       - name: Checkout repository
@@ -34,9 +35,6 @@ jobs:
       - name: Install uv
         run: pip install uv
 
-      - name: Setup virtual environment
-        run: uv venv .venv --python=3.10
-
       - name: Extract version
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
@@ -45,11 +43,6 @@ jobs:
             VERSION=$(echo $GITHUB_REF | sed -n 's/refs\/tags\/v//p')
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          
-          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+.*$ ]]; then
-            echo "Invalid version format: $VERSION"
-            exit 1
-          fi
 
       - name: Update version in pyproject.toml
         run: sed -i "s/version = \".*\"/version = \"$VERSION\"/" pyproject.toml
@@ -61,24 +54,23 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && inputs.test_only
         env:
           UV_PUBLISH_TOKEN: ${{ secrets.TEST_PYPI_API_KEY }}
-        run: uv publish --publish-url https://test.pypi.org/legacy/
+        run: |
+          if [ -z "$UV_PUBLISH_TOKEN" ]; then
+            echo "❌ TEST_PYPI_API_KEY secret not found"
+            exit 1
+          fi
+          uv publish --publish-url https://test.pypi.org/legacy/
 
-      - name: Publish to PyPI
+      - name: Publish to PyPI  
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
         env:
           UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_KEY }}
-        run: uv publish --publish-url https://upload.pypi.org/legacy/
-
-      - name: Publish with twine (fallback)
-        if: failure()
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ github.event_name == 'push' && secrets.PYPI_API_KEY || secrets.TEST_PYPI_API_KEY }}
-          TWINE_REPOSITORY_URL: ${{ github.event_name == 'push' && 'https://upload.pypi.org/legacy/' || 'https://test.pypi.org/legacy/' }}
         run: |
-          source .venv/bin/activate
-          uv pip install twine
-          twine upload dist/*
+          if [ -z "$UV_PUBLISH_TOKEN" ]; then
+            echo "❌ PYPI_API_KEY secret not found"
+            exit 1
+          fi
+          uv publish --publish-url https://upload.pypi.org/legacy/
 
       - name: Upload built artifacts
         uses: actions/upload-artifact@v4
