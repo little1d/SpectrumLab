@@ -1,26 +1,37 @@
-name: Publish specbench to PyPI
+name: Publish to PyPI / Github
 
 on:
   push:
     tags:
       - "v*.*.*"
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:  
+    inputs:
+      test_only:
+        description: 'Only publish to TestPyPI (for testing)'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
-  publish:
+  build-and-publish-pypi:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v4
-        with:
-          version: "latest"
-
       - name: Set up Python
-        run: uv python install 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Setup virtual environment
+        run: uv venv .venv --python=3.10
 
       - name: Extract version from tag
         run: |
@@ -29,35 +40,81 @@ jobs:
 
       - name: Update version in pyproject.toml
         run: |
-          # 使用 sed 更新版本号
           sed -i "s/version = \".*\"/version = \"$VERSION\"/" pyproject.toml
           echo "Updated version to $VERSION"
-
-      - name: Verify project structure
-        run: |
-          echo "Project structure:"
-          ls -la
-          echo "Specbench package:"
-          ls -la specbench/
+          grep "version =" pyproject.toml
 
       - name: Build package
-        run: |
-          uv build
-          echo "Built packages:"
-          ls -la dist/
+        run: uv build
 
-      - name: Publish to PyPI
+      # 🎯 测试发布到 TestPyPI（手动触发或测试时）
+      - name: Publish to TestPyPI
+        if: github.event_name == 'workflow_dispatch' && inputs.test_only == true
         env:
-          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+          UV_PUBLISH_TOKEN: ${{ secrets.TEST_PYPI_API_KEY }}
         run: |
-          uv publish
+          echo "🧪 Publishing to TestPyPI for testing..."
+          uv publish --publish-url https://test.pypi.org/legacy/ --verbose
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+      # 🚀 正式发布到 PyPI（标签触发）
+      - name: Publish to PyPI
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_KEY }}
+        run: |
+          echo "🚀 Publishing to PyPI..."
+          uv publish --publish-url https://upload.pypi.org/legacy/ --verbose
+
+      # 📦 备用方案：使用 twine
+      - name: Publish with twine (fallback)
+        if: failure()  # 如果上面的步骤失败
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ github.event_name == 'push' && secrets.PYPI_API_KEY || secrets.TEST_PYPI_API_KEY }}
+          TWINE_REPOSITORY_URL: ${{ github.event_name == 'push' && 'https://upload.pypi.org/legacy/' || 'https://test.pypi.org/legacy/' }}
+        run: |
+          source .venv/bin/activate
+          uv pip install twine
+          twine upload dist/* --verbose
+
+      - name: Upload built artifacts
+        uses: actions/upload-artifact@v4
         with:
-          files: |
-            dist/*.whl
-            dist/*.tar.gz
+          name: dist
+          path: dist
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: build-and-publish-pypi
+    # 只有正式发布时才创建 Release
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download built artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Check tag for pre-release
+        id: prerelease_check
+        run: |
+          if [[ "${{ github.ref_name }}" == *"alpha"* ]] || [[ "${{ github.ref_name }}" == *"beta"* ]] || [[ "${{ github.ref_name }}" == *"rc"* ]]; then
+            echo "prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "prerelease=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Release to GitHub
+        uses: softprops/action-gh-release@v2
+        with:
           generate_release_notes: true
-          name: "Release ${{ env.VERSION }}"
+          draft: false
+          prerelease: ${{ steps.prerelease_check.outputs.prerelease }}
+          files: dist/*

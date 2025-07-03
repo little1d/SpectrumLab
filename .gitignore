@@ -4,6 +4,7 @@
 # Virtual environments & Python cache
 *.venv/
 *__pycache__/
+.ruff_cache/
 
 # System files
 .DS_Store

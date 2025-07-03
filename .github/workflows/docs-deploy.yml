@@ -3,6 +3,9 @@ name: Deploy VitePress Docs Site to Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/docs-deploy.yml'
   workflow_dispatch:
 
 permissions:

@@ -8,7 +8,10 @@ version = "0.0.1"
 description = "化学谱学大模型 Benchmark 引擎"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Zhuo Yang, Tianfan Fu" }]
+authors = [
+    { name = "Zhuo Yang", email = "yzachary1551@gmail.com" },
+    { name = "Tianfan Fu", email = "futianfan@gmail.com" },
+]
 keywords = ["benchmark", "chemistry", "spectroscopy", "evaluation"]
 
 dependencies = ["dotenv>=0.9.9", "openai>=1.93.0"]
