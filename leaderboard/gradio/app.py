@@ -2,8 +2,7 @@ import gradio as gr
 import pandas as pd
 import json
 from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Optional
 
 
 class SpectralLeaderboard:
@@ -223,7 +222,6 @@ def create_leaderboard():
         }
         """,
     ) as demo:
-
         gr.Markdown(
             """
             # 🏆 Spectral Hub Leaderboard
@@ -240,7 +238,7 @@ def create_leaderboard():
             info = leaderboard.data["leaderboard_info"]
             gr.Markdown(
                 f"""
-                **📈 Stats**: {info['total_models']} models evaluated  
+                **📈 Stats**: {info["total_models"]} models evaluated  
                 **🏅 Rankings**: 🥇🥈🥉 medals for top performers  
                 **🔗 Submit**: Send evaluation results to contribute your model!
                 """

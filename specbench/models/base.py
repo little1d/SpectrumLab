@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Union, Any, Dict
+from typing import Union, Any, Dict
 
 
 class BaseModel(ABC):

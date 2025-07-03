@@ -1,4 +1,4 @@
-from typing import List, Dict, Any, Optional, Union
+from typing import Dict, Any, Optional, Union
 from .base_api import BaseAPIModel
 from specbench.config import Config
 from openai import OpenAI

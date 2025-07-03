@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "ms-python.black-formatter",
+        "editorconfig.editorconfig",
+        "eamodio.gitlens",
+        // 代码标记，比如 TODO, FIXME
+        "gruntfuggly.todo-tree",
+    ]
+}

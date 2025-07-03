@@ -1,5 +1,5 @@
-from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Union
+from abc import abstractmethod
+from typing import Dict, Any, Union
 from .base import BaseModel
 
 

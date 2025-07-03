@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Optional
 from pathlib import Path
 import json
 from datetime import datetime
@@ -53,7 +53,7 @@ class BaseEvaluator(ABC):
                     response = model.generate(prompt, max_out_len)
                     responses.append(response)
                 except Exception as e:
-                    print(f"\n⚠️  Error on item {i+1}: {e}")
+                    print(f"\n⚠️  Error on item {i + 1}: {e}")
                     responses.append(f"Error: {str(e)}")
 
         except Exception as e:
@@ -149,7 +149,6 @@ class BaseEvaluator(ABC):
         subcategory_stats = {}
 
         for item in processed_items:
-            answer = item.get("answer", "")
             prediction = item.get(self.prediction_key, "")
             category = item.get("category", "Unknown")
             sub_category = item.get("sub_category", "Unknown")

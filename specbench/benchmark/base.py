@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from pathlib import Path
-from typing import List, Dict, Optional, Union
+from typing import List, Dict, Union
 import json
 
 
