@@ -20,3 +20,8 @@ class Config:
     gpt4o_api_key: str = os.getenv("GPT4O_API_KEY")
     gpt4o_base_url: str = os.getenv("GPT4O_BASE_URL")
     gpt4o_model_name: str = os.getenv("GPT4O_MODEL_NAME")
+
+    # InternVL API Configuration
+    internvl_api_key: str = os.getenv("INTERNVL_API_KEY")
+    internvl_base_url: str = os.getenv("INTERNVL_BASE_URL")
+    internvl_model_name: str = os.getenv("INTERNVL_MODEL_NAME")

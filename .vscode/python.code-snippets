@@ -17,5 +17,13 @@
             "# Adapted from: ${1:source_description}",
             "# Source: ${2:https://github.com/example/repo}",
         ]
+    },
+    "model-doc-link": { // <<< 新增片段
+        "prefix": "doclink", // 触发关键字
+        "scope": "python,notebook",
+        "description": "插入外部模型/库的文档链接",
+        "body": [
+            "# Link: ${1:https://example.com}"
+        ]
     }
 }
