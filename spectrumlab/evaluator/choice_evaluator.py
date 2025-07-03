@@ -1,7 +1,7 @@
 import re
 from typing import List, Dict
 from .base import BaseEvaluator
-from deepspectrum.utils.image_utils import (
+from spectrumlab.utils.image_utils import (
     prepare_images_for_prompt,
     normalize_image_paths,
 )

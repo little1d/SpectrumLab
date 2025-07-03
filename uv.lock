@@ -99,7 +99,7 @@ wheels = [
 ]
 
 [[package]]
-name = "deepspectrum"
+name = "spectrumlab"
 version = "0.0.1"
 source = { editable = "." }
 dependencies = [

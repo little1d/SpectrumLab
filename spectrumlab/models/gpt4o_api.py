@@ -1,6 +1,6 @@
 from typing import Dict, Any, Optional, Union
 from .base_api import BaseAPIModel
-from deepspectrum.config import Config
+from spectrumlab.config import Config
 from openai import OpenAI
 
 
