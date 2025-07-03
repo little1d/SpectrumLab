@@ -4,7 +4,8 @@
     /* 自定义图标关联 */
     "material-icon-theme.folders.associations": {
         "leaderboard": "Secure",
-        "specbench": "Api",
+        "evaluator": "Plastic",
+        "deepspectrum": "Api",
     },
     "material-icon-theme.files.associations": {},
     "editor.codeActionsOnSave": {

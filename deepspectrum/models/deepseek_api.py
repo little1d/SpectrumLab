@@ -1,6 +1,6 @@
 from typing import Optional
 from .base_api import BaseAPIModel
-from specbench.config import Config
+from deepspectrum.config import Config
 from openai import OpenAI
 
 

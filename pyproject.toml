@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "specbench"
+name = "deepspectrum"
 version = "0.0.1"
-description = "化学谱学大模型 Benchmark 引擎"
+description = "Comprehensive toolkit for spectroscopy deep learning: dataset loading, training, evaluation, inference, and more"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
@@ -20,10 +20,10 @@ dependencies = ["dotenv>=0.9.9", "openai>=1.93.0"]
 dev = ["pytest>=7.4.0", "black>=23.0.0", "ruff>=0.1.0", "pre-commit>=4.2.0"]
 
 [project.scripts]
-specbench = "specbench.cli.main:main"
+deepspectrum = "deepspectrum.cli.main:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["specbench"]
+packages = ["deepspectrum"]
 
 [tool.hatch.metadata]
 allow-direct-references = true

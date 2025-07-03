@@ -1,7 +1,10 @@
 import re
 from typing import List, Dict
 from .base import BaseEvaluator
-from specbench.utils.image_utils import prepare_images_for_prompt, normalize_image_paths
+from deepspectrum.utils.image_utils import (
+    prepare_images_for_prompt,
+    normalize_image_paths,
+)
 
 
 class ChoiceEvaluator(BaseEvaluator):

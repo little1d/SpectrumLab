@@ -1,5 +1,5 @@
 """
-Specbench 命令行界面
+Deepspectrum 命令行界面
 """
 
 import argparse
@@ -8,10 +8,10 @@ from typing import Optional, List
 
 def main(argv: Optional[List[str]] = None) -> int:
     """
-    Specbench 主命令行入口点
+    Deepspectrum 主命令行入口点
     """
     parser = argparse.ArgumentParser(
-        prog="specbench", description="化学谱学大模型 Benchmark 引擎"
+        prog="deepspectrum", description="化学谱学大模型 Benchmark 引擎"
     )
 
     parser.add_argument("--version", action="version", version="%(prog)s 0.0.1")

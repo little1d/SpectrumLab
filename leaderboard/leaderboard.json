@@ -302,8 +302,8 @@
         {
             "name": "Random Baseline",
             "name_link": "",
-            "submitter": "Specbench Team",
-            "submitter_link": "mailto:specbench@example.com",
+            "submitter": "Deepspectrum Team",
+            "submitter_link": "mailto:deepspectrum@example.com",
             "submission_time": "2024-12-20T12:00:00Z",
             "model_type": "baseline",
             "model_size": "N/A",
