@@ -58,7 +58,7 @@ jobs:
         run: uv build
 
       - name: Publish to TestPyPI
-        if: github.event_name == 'workflow_dispatch' && inputs.test_only == 'true'
+        if: github.event_name == 'workflow_dispatch' && inputs.test_only
         env:
           UV_PUBLISH_TOKEN: ${{ secrets.TEST_PYPI_API_KEY }}
         run: uv publish --publish-url https://test.pypi.org/legacy/
