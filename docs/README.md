@@ -48,7 +48,7 @@ Create a new branch for your documentation changes. We recommend using the namin
 git checkout -b docs/<your-section-name>
 ```
 
-For detailed branching and contribution guidelines, please refer to our [CONTRIBUTING.md](../CONTRIBUTING.md).
+For detailed branching and contribution guidelines, please refer to our [Contributing Guide](https://github.com/little1d/SpectrumLab/blob/main/CONTRIBUTING.md).
 
 ### Step 4: Preview Your Changes
 
@@ -78,7 +78,7 @@ npm run docs:preview
 
 ### Step 5: Deployment
 
-We have automated deployment set up using [GitHub Actions](.github/workflows/docs-deploy.yml). The deployment process is triggered automatically when:
+We have automated deployment set up using GitHub Actions. The deployment process is triggered automatically when:
 
 - Changes are pushed to the `main` branch
 - Changes are made to files in the `docs/` directory
@@ -156,7 +156,7 @@ If you encounter any issues or have questions about contributing to the document
 1. Check our [existing issues](https://github.com/little1d/SpectrumLab/issues)
 2. Create a new issue with the `documentation` label
 3. Refer to the [VitePress documentation](https://vitepress.dev/) for technical questions
-4. Review our [CONTRIBUTING.md](../CONTRIBUTING.md) for general contribution guidelines
+4. Review our [Contributing Guide](https://github.com/little1d/SpectrumLab/blob/main/CONTRIBUTING.md) for general contribution guidelines
 
 ## Resources
 
