@@ -4,7 +4,7 @@ import { zh } from './zh'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/spectral-hub/',
+  base: '/SpectrumLab/',
 
   // 清理 URL 中的 .html 后缀
   cleanUrls: true,
@@ -12,7 +12,7 @@ export default defineConfig({
   // 全局共享配置
   themeConfig: {
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/little1d/spectral-hub' }
+      { icon: 'github', link: 'https://github.com/little1d/spectrumlab' }
     ],
 
     lastUpdated: {

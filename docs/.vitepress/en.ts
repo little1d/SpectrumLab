@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export const en = defineConfig({
     lang: 'en-US',
-    title: "Spectral-Hub",
+    title: "SpectrumLab",
     description: "An Excellent Toolkit for Spectral Benchmark.",
 
     themeConfig: {
@@ -33,7 +33,7 @@ export const en = defineConfig({
         },
         footer: {
             message: 'Released under the MIT License',
-            copyright: 'Copyright © 2024 Spectral-Hub'
+            copyright: 'Copyright © 2024 SpectrumLab'
         },
 
         // 英文版本的组件文本
