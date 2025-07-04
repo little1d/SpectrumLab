@@ -1,2 +1,2 @@
-# spectral-hub
+# SpectrumLab
 
