@@ -101,8 +101,8 @@ class BaseEvaluator(ABC):
         pass
 
     def _save_results(self, results_data: List[Dict], save_path: str) -> List[str]:
-        """Save results grouped by subcategory."""
-        if not results_data:
+        """Save results grouped by subcategory. If save_path is None, do not save."""
+        if not results_data or save_path is None:
             return []
 
         save_dir = Path(save_path)
