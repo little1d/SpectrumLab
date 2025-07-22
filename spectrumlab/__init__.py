@@ -21,7 +21,6 @@ from .models import DeepSeek, GPT4o, InternVL
 from .models import Claude_Sonnet_3_5, Claude_Opus_4, Claude_Haiku_3_5, Claude_Sonnet_4
 from .models import GPT4_1, GPT4_Vision
 from .models import Grok_2_Vision
-from .models import Gemini_2_5_Pro
 from .config import Config
 
 __all__ = [
@@ -41,6 +40,5 @@ __all__ = [
     "GPT4_1",
     "GPT4_Vision",
     "Grok_2_Vision",
-    "Gemini_2_5_Pro",
     "Config",
 ] 

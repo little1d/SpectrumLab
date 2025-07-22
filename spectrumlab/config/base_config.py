@@ -52,11 +52,6 @@ class Config:
     grok_2_vision_base_url: str = BOYUE_BASE_URL
     grok_2_vision_model_name: str = os.getenv("GROK_2_VISION")
     
-    # Gemini-2.5-Pro
-    gemini_2_5_pro_api_key: str = BOYUE_API_KEY
-    gemini_2_5_pro_base_url: str = BOYUE_BASE_URL
-    gemini_2_5_pro_model_name: str = os.getenv("GEMINI_2_5_PRO")
-    
     # Qwen-VL-Max 
     qwen_vl_api_key: str = BOYUE_API_KEY
     qwen_vl_base_url: str = BOYUE_BASE_URL
