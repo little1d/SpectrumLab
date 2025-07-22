@@ -11,6 +11,10 @@ load_dotenv(env_path)
 
 @dataclass
 class Config:
+    # This api key is for testing closed MLLMs by Boyue Richdata
+    BOYUE_API_KEY: str = os.getenv("BOYUE_API_KEY")
+    BOYUE_BASE_URL: str = os.getenv("BOYUE_BASE_URL")
+
     # DeepSeek API Configuration
     deepseek_api_key: str = os.getenv("DEEPSEEK_API_KEY")
     deepseek_base_url: str = os.getenv("DEEPSEEK_BASE_URL")
@@ -25,3 +29,29 @@ class Config:
     internvl_api_key: str = os.getenv("INTERNVL_API_KEY")
     internvl_base_url: str = os.getenv("INTERNVL_BASE_URL")
     internvl_model_name: str = os.getenv("INTERNVL_MODEL_NAME")
+
+    # Claude API Configuration
+    claude_api_key: str = BOYUE_API_KEY
+    claude_base_url: str = BOYUE_BASE_URL
+    claude_sonnet_3_5_model_name: str = os.getenv("CLAUDE_SONNET_3_5")
+    claude_opus_4_model_name: str = os.getenv("CLAUDE_OPUS_4")
+    claude_haiku_3_5_model_name: str = os.getenv("CLAUDE_HAIKU_3_5")
+    claude_sonnet_4_model_name: str = os.getenv("CLAUDE_SONNET_4")
+
+    # GPT-4.1, GPT-4-Vision
+    gpt4_1_api_key: str = BOYUE_API_KEY
+    gpt4_1_base_url: str = BOYUE_BASE_URL
+    gpt4_1_model_name: str = os.getenv("GPT4_1")
+    gpt4_vision_api_key: str = BOYUE_API_KEY
+    gpt4_vision_base_url: str = BOYUE_BASE_URL
+    gpt4_vision_model_name: str = os.getenv("GPT4_VISION")
+
+    # Grok-2-Vision
+    grok_2_vision_api_key: str = BOYUE_API_KEY
+    grok_2_vision_base_url: str = BOYUE_BASE_URL
+    grok_2_vision_model_name: str = os.getenv("GROK_2_VISION")
+
+    # Qwen-VL-Max
+    qwen_vl_api_key: str = BOYUE_API_KEY
+    qwen_vl_base_url: str = BOYUE_BASE_URL
+    qwen_vl_model_name: str = os.getenv("QWEN_VL")

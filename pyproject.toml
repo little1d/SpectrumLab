@@ -32,3 +32,10 @@ allow-direct-references = true
 [tool.black]
 line-length = 120
 skip-string-normalization = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
