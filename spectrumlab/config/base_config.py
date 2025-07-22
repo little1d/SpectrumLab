@@ -6,7 +6,6 @@ from pathlib import Path
 # Load .env from project root directory
 project_root = Path(__file__).parent.parent.parent
 env_path = project_root / ".env"
-print(env_path)
 load_dotenv(env_path)
 
 
@@ -15,7 +14,7 @@ class Config:
     # This api key is for testing closed MLLMs by Boyue Richdata
     BOYUE_API_KEY: str = os.getenv("BOYUE_API_KEY")
     BOYUE_BASE_URL: str = os.getenv("BOYUE_BASE_URL")
-    
+
     # DeepSeek API Configuration
     deepseek_api_key: str = os.getenv("DEEPSEEK_API_KEY")
     deepseek_base_url: str = os.getenv("DEEPSEEK_BASE_URL")
@@ -46,14 +45,13 @@ class Config:
     gpt4_vision_api_key: str = BOYUE_API_KEY
     gpt4_vision_base_url: str = BOYUE_BASE_URL
     gpt4_vision_model_name: str = os.getenv("GPT4_VISION")
-    
+
     # Grok-2-Vision
     grok_2_vision_api_key: str = BOYUE_API_KEY
     grok_2_vision_base_url: str = BOYUE_BASE_URL
     grok_2_vision_model_name: str = os.getenv("GROK_2_VISION")
-    
-    # Qwen-VL-Max 
+
+    # Qwen-VL-Max
     qwen_vl_api_key: str = BOYUE_API_KEY
     qwen_vl_base_url: str = BOYUE_BASE_URL
     qwen_vl_model_name: str = os.getenv("QWEN_VL")
-    
