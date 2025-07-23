@@ -55,3 +55,38 @@ class Config:
     qwen_vl_api_key: str = BOYUE_API_KEY
     qwen_vl_base_url: str = BOYUE_BASE_URL
     qwen_vl_model_name: str = os.getenv("QWEN_VL")
+    
+    # DeepSeek-VL-2
+    deepseek_vl_2_api_key: str = BOYUE_API_KEY
+    deepseek_vl_2_base_url: str = BOYUE_BASE_URL
+    deepseek_vl_2_model_name: str = os.getenv("DEEPSEEK_VL_2")
+    
+    # Qwen-2.5-VL-32B
+    qwen_2_5_vl_32b_api_key: str = BOYUE_API_KEY
+    qwen_2_5_vl_32b_base_url: str = BOYUE_BASE_URL
+    qwen_2_5_vl_32b_model_name: str = os.getenv("QWEN_2_5_VL_32B")
+
+    # Qwen-2.5-VL-72B
+    qwen_2_5_vl_72b_api_key: str = BOYUE_API_KEY
+    qwen_2_5_vl_72b_base_url: str = BOYUE_BASE_URL
+    qwen_2_5_vl_72b_model_name: str = os.getenv("QWEN_2_5_VL_72B")
+    
+    # Llama-Vision-11B
+    llama_vision_11b_api_key: str = BOYUE_API_KEY
+    llama_vision_11b_base_url: str = BOYUE_BASE_URL
+    llama_vision_11b_model_name: str = os.getenv("LLAMA_VISION_11B")
+
+    # Llama-Vision-90B
+    llama_vision_90b_api_key: str = BOYUE_API_KEY
+    llama_vision_90b_base_url: str = BOYUE_BASE_URL
+    llama_vision_90b_model_name: str = os.getenv("LLAMA_VISION_90B")   
+    
+    # Doubao-1.5-Vision-Pro
+    doubao_1_5_vision_pro_api_key: str = BOYUE_API_KEY
+    doubao_1_5_vision_pro_base_url: str = BOYUE_BASE_URL
+    doubao_1_5_vision_pro_model_name: str = os.getenv("DOUBAO_1_5_VISION_PRO")
+    
+    # Doubao-1.5-Vision-Pro-Thinking
+    doubao_1_5_vision_pro_thinking_api_key: str = BOYUE_API_KEY
+    doubao_1_5_vision_pro_thinking_base_url: str = BOYUE_BASE_URL
+    doubao_1_5_vision_pro_thinking_model_name: str = os.getenv("DOUBAO_1_5_VISION_PRO_THINKING")
