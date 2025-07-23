@@ -38,3 +38,14 @@ def test_doubao_1_5_vision_pro_signalgroup_evaluation():
     results = evaluator.evaluate(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
+
+
+def test_doubao_1_5_vision_pro_signalgroup_evaluation_parallel():
+    model = Doubao_1_5_Vision_Pro()
+    signal_group = SignalGroup("data")
+    data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
+    evaluator = ChoiceEvaluator()
+    results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
+    assert "metrics" in results
+    assert "overall" in results["metrics"]
+    

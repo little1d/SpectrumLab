@@ -38,3 +38,14 @@ def test_gpt_4_1_signalgroup_evaluation():
     results = evaluator.evaluate(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
+
+
+def test_gpt_4_1_signalgroup_evaluation_parallel():
+    model = GPT4_1()
+    signal_group = SignalGroup("data")
+    data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
+    evaluator = ChoiceEvaluator()
+    results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
+    assert "metrics" in results
+    assert "overall" in results["metrics"]
+    

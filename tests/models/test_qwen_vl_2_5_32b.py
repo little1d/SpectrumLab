@@ -38,3 +38,13 @@ def test_qwen_2_5_vl_32b_signalgroup_evaluation():
     results = evaluator.evaluate(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
+
+def test_qwen_2_5_vl_32b_signalgroup_evaluation_parallel():
+    model = Qwen_2_5_VL_32B()
+    signal_group = SignalGroup("data")
+    data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
+    evaluator = ChoiceEvaluator()
+    results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
+    assert "metrics" in results
+    assert "overall" in results["metrics"]
+    
