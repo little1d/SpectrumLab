@@ -1,19 +1,19 @@
-from spectrumlab.models import Claude_Sonnet_4
+from spectrumlab.models import Doubao_1_5_Vision_Pro_Thinking
 from spectrumlab.utils.image_utils import encode_image_to_base64
 from spectrumlab.benchmark.signal_group import SignalGroup
 from spectrumlab.evaluator.choice_evaluator import ChoiceEvaluator
 
 
-def test_claude_text_generation():
-    model = Claude_Sonnet_4()
+def test_doubao_1_5_vision_pro_thinking_text_generation():
+    model = Doubao_1_5_Vision_Pro_Thinking()
     prompt = "What is spectroscopy?"
     response = model.generate(prompt)
     assert isinstance(response, str)
     assert len(response) > 0
 
 
-def test_claude_multimodal_generation():
-    model = Claude_Sonnet_4()
+def test_doubao_1_5_vision_pro_thinking_multimodal_generation():
+    model = Doubao_1_5_Vision_Pro_Thinking()
     image_path = "playground/models/test.jpg"
     image_base64 = encode_image_to_base64(image_path)
     prompt = {
@@ -30,8 +30,8 @@ def test_claude_multimodal_generation():
     assert len(response) > 0
 
 
-def test_claude_signalgroup_evaluation():
-    model = Claude_Sonnet_4()
+def test_doubao_1_5_vision_pro_thinking_signalgroup_evaluation():
+    model = Doubao_1_5_Vision_Pro_Thinking()
     signal_group = SignalGroup("data")
     data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
     evaluator = ChoiceEvaluator()
@@ -40,11 +40,12 @@ def test_claude_signalgroup_evaluation():
     assert "overall" in results["metrics"]
 
 
-def test_claude_signalgroup_evaluation_parallel():
-    model = Claude_Sonnet_4()
+def test_doubao_1_5_vision_pro_thinking_signalgroup_evaluation_parallel():
+    model = Doubao_1_5_Vision_Pro_Thinking()
     signal_group = SignalGroup("data")
     data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
     evaluator = ChoiceEvaluator()
     results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
+    

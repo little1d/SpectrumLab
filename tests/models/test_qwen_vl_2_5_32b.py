@@ -1,19 +1,19 @@
-from spectrumlab.models import Claude_Sonnet_4
+from spectrumlab.models import Qwen_2_5_VL_32B
 from spectrumlab.utils.image_utils import encode_image_to_base64
 from spectrumlab.benchmark.signal_group import SignalGroup
 from spectrumlab.evaluator.choice_evaluator import ChoiceEvaluator
 
 
-def test_claude_text_generation():
-    model = Claude_Sonnet_4()
+def test_qwen_2_5_vl_32b_text_generation():
+    model = Qwen_2_5_VL_32B()
     prompt = "What is spectroscopy?"
     response = model.generate(prompt)
     assert isinstance(response, str)
     assert len(response) > 0
 
 
-def test_claude_multimodal_generation():
-    model = Claude_Sonnet_4()
+def test_qwen_2_5_vl_32b_multimodal_generation():
+    model = Qwen_2_5_VL_32B()
     image_path = "playground/models/test.jpg"
     image_base64 = encode_image_to_base64(image_path)
     prompt = {
@@ -30,8 +30,8 @@ def test_claude_multimodal_generation():
     assert len(response) > 0
 
 
-def test_claude_signalgroup_evaluation():
-    model = Claude_Sonnet_4()
+def test_qwen_2_5_vl_32b_signalgroup_evaluation():
+    model = Qwen_2_5_VL_32B()
     signal_group = SignalGroup("data")
     data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
     evaluator = ChoiceEvaluator()
@@ -39,12 +39,12 @@ def test_claude_signalgroup_evaluation():
     assert "metrics" in results
     assert "overall" in results["metrics"]
 
-
-def test_claude_signalgroup_evaluation_parallel():
-    model = Claude_Sonnet_4()
+def test_qwen_2_5_vl_32b_signalgroup_evaluation_parallel():
+    model = Qwen_2_5_VL_32B()
     signal_group = SignalGroup("data")
     data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
     evaluator = ChoiceEvaluator()
     results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
+    

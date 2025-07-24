@@ -4,7 +4,7 @@ from spectrumlab.benchmark.signal_group import SignalGroup
 from spectrumlab.evaluator.choice_evaluator import ChoiceEvaluator
 
 
-def test_claude_text_generation():
+def test_gpt_4_1_text_generation():
     model = GPT4_1()
     prompt = "What is spectroscopy?"
     response = model.generate(prompt)
@@ -12,7 +12,7 @@ def test_claude_text_generation():
     assert len(response) > 0
 
 
-def test_claude_multimodal_generation():
+def test_gpt_4_1_multimodal_generation():
     model = GPT4_1()
     image_path = "playground/models/test.jpg"
     image_base64 = encode_image_to_base64(image_path)
@@ -30,7 +30,7 @@ def test_claude_multimodal_generation():
     assert len(response) > 0
 
 
-def test_claude_signalgroup_evaluation():
+def test_gpt_4_1_signalgroup_evaluation():
     model = GPT4_1()
     signal_group = SignalGroup("data")
     data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
@@ -38,3 +38,14 @@ def test_claude_signalgroup_evaluation():
     results = evaluator.evaluate(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
+
+
+def test_gpt_4_1_signalgroup_evaluation_parallel():
+    model = GPT4_1()
+    signal_group = SignalGroup("data")
+    data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
+    evaluator = ChoiceEvaluator()
+    results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
+    assert "metrics" in results
+    assert "overall" in results["metrics"]
+    
