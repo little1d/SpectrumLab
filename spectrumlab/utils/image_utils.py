@@ -67,15 +67,15 @@ def prepare_images_for_prompt(
 def normalize_image_paths(image_paths_field: Any) -> Optional[List[str]]:
     if not image_paths_field:
         return None
-
     if isinstance(image_paths_field, str):
         if image_paths_field.strip() == "":
             return None
         return [image_paths_field.strip()]
-
     if isinstance(image_paths_field, list):
-        # Filter out empty strings
-        paths = [p.strip() for p in image_paths_field if p and str(p).strip()]
+        # 递归处理每个元素，保证都是字符串
+        paths = []
+        for p in image_paths_field:
+            if isinstance(p, str) and p.strip():
+                paths.append(p.strip())
         return paths if paths else None
-
     return None

@@ -26,9 +26,10 @@ class ChoiceEvaluator(BaseEvaluator):
             "Available options:",
             options_block,
             "",
-            "Please think step by step and provide your reasoning.",
-            "After your analysis, indicate your final choice by putting it in \\box{}.",
-            "For example: \\box{Option A}",
+            "Please analyze the question and options carefully. Your answer must be exactly one of the provided options, and must be copied verbatim from the options above.",
+            "Return your answer using the format \\answer{...}, where the content inside the braces is exactly the text of your chosen option (not the option letter or number, and do not use \\box{} or any other wrapper).",
+            "For example, if you choose the option '~1700 cm⁻¹', you should return: \\answer{~1700 cm⁻¹}",
+            "Do not return just a value like '~1700 cm' or any partial/incomplete answer. The answer must match one of the options exactly.",
             "",
             "Your response:",
         ]
@@ -39,6 +40,9 @@ class ChoiceEvaluator(BaseEvaluator):
         image_paths = normalize_image_paths(image_paths_field)
 
         if image_paths:
+            assert all(
+                isinstance(p, str) for p in image_paths
+            ), f"image_paths should be List[str], got {image_paths}"
             # Prepare image data
             image_data = prepare_images_for_prompt(image_paths)
 
@@ -50,24 +54,13 @@ class ChoiceEvaluator(BaseEvaluator):
         return text_content
 
     def _extract_prediction(self, response: str, item: Dict) -> str:
-        """Extract prediction from model response using \\box{} pattern."""
+        """只提取 \\answer{...} 内的内容"""
         if not response:
             return ""
-
-        choices = item.get("choices", [])
-
-        # Look for \\box{} pattern
-        box_pattern = r"\\box\{([^}]+)\}"
-        matches = re.findall(box_pattern, response)
-
+        answer_pattern = r"\\answer\{([^}]+)\}"
+        matches = re.findall(answer_pattern, response)
         if matches:
-            extracted = matches[-1].strip()
-            # Try to match with actual choices
-            for choice in choices:
-                if choice.lower() == extracted.lower():
-                    return choice
-            return extracted
-
+            return matches[-1].strip()
         return ""
 
     def _calculate_accuracy(self, answer: str, prediction: str, item: Dict) -> bool:

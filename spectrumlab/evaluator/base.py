@@ -107,7 +107,7 @@ class BaseEvaluator(ABC):
     ) -> Dict:
         """
         Evaluate a single model on data_items with parallel processing.
-        
+
         Args:
             data_items: List of data items to evaluate
             model: Model instance to evaluate
@@ -115,53 +115,53 @@ class BaseEvaluator(ABC):
             batch_size: Batch size for processing (if None, will be auto-calculated)
             save_path: Base path to save results
             n_jobs: Number of parallel jobs (-1 for all available cores)
-            
+
         Returns:
             Dictionary containing evaluation results
         """
         import multiprocessing as mp
         from concurrent.futures import ThreadPoolExecutor, as_completed
         import math
-        
+
         if not data_items:
             print("❌ No data items provided")
             return {"error": "No data items provided"}
-            
+
         # Set number of jobs
         if n_jobs == -1:
             n_jobs = mp.cpu_count()
-            
+
         # Calculate batch size if not provided
         if batch_size is None:
             batch_size = max(1, math.ceil(len(data_items) / n_jobs))
-            
+
         print(f"🔄 Starting parallel evaluation on {len(data_items)} items...")
         print(f"📝 Model: {type(model).__name__}")
         print(f"⚡ Using {n_jobs} parallel workers with batch size {batch_size}")
-        
+
         # Split data into batches
         batches = [
-            data_items[i:i + batch_size] 
+            data_items[i : i + batch_size]
             for i in range(0, len(data_items), batch_size)
         ]
-        
+
         print(f"📦 Split into {len(batches)} batches")
-        
+
         # Build prompts for all items
         print("📝 Building prompts...")
         all_prompts = [self._build_prompt(item) for item in data_items]
-        
+
         # Split prompts into batches
         prompt_batches = [
-            all_prompts[i:i + batch_size] 
+            all_prompts[i : i + batch_size]
             for i in range(0, len(all_prompts), batch_size)
         ]
-        
+
         def process_batch(batch_data):
             """Process a batch of prompts and return responses."""
             batch_prompts, batch_indices = batch_data
             batch_responses = []
-            
+
             for i, prompt in enumerate(batch_prompts):
                 try:
                     response = model.generate(prompt, max_out_len)
@@ -171,9 +171,9 @@ class BaseEvaluator(ABC):
                     original_index = batch_indices[i]
                     print(f"\n⚠️  Error on item {original_index + 1}: {e}")
                     batch_responses.append(f"Error: {str(e)}")
-                    
+
             return batch_indices, batch_responses
-        
+
         # Prepare batch data with indices
         batch_data_list = []
         for i, prompt_batch in enumerate(prompt_batches):
@@ -181,23 +181,23 @@ class BaseEvaluator(ABC):
             end_idx = min(start_idx + batch_size, len(data_items))
             batch_indices = list(range(start_idx, end_idx))
             batch_data_list.append((prompt_batch, batch_indices))
-        
+
         # Execute parallel processing
         all_responses = [None] * len(data_items)
-        
+
         with ThreadPoolExecutor(max_workers=n_jobs) as executor:
             # Submit all batch tasks
             future_to_batch = {
-                executor.submit(process_batch, batch_data): batch_data[1][0] 
+                executor.submit(process_batch, batch_data): batch_data[1][0]
                 for batch_data in batch_data_list
             }
-            
+
             # Collect results as they complete
             for future in tqdm(
-                as_completed(future_to_batch), 
+                as_completed(future_to_batch),
                 total=len(future_to_batch),
                 desc="Processing batches",
-                unit="batch"
+                unit="batch",
             ):
                 try:
                     batch_indices, batch_responses = future.result()
@@ -205,7 +205,7 @@ class BaseEvaluator(ABC):
                         all_responses[idx] = response
                 except Exception as e:
                     print(f"❌ Error processing batch: {e}")
-        
+
         # Process responses and calculate results
         print("🔍 Processing responses...")
         processed_items = []
@@ -225,18 +225,18 @@ class BaseEvaluator(ABC):
             item_copy["pass"] = is_correct
 
             processed_items.append(item_copy)
-        
+
         # Save results
         saved_files = self._save_results(processed_items, save_path)
         print(f"💾 Results saved to: {saved_files}")
-        
+
         # Calculate metrics
         print("📊 Calculating metrics...")
         metrics = self._calculate_metrics(processed_items)
-        
+
         # Print results
         self._print_results(metrics)
-        
+
         return {
             "metrics": metrics,
             "saved_files": saved_files,
@@ -244,8 +244,8 @@ class BaseEvaluator(ABC):
             "parallel_info": {
                 "n_jobs": n_jobs,
                 "batch_size": batch_size,
-                "n_batches": len(batches)
-            }
+                "n_batches": len(batches),
+            },
         }
 
     def _save_results(self, results_data: List[Dict], save_path: str) -> List[str]:
@@ -302,7 +302,10 @@ class BaseEvaluator(ABC):
             sub_category = item.get("sub_category", "Unknown")
 
             # Check if prediction exists
-            if not prediction or prediction.strip() == "":
+            # 兼容 prediction 可能为 float（如 OpenEvaluator），也可能为 str（如 ChoiceEvaluator）
+            if prediction is None or (
+                isinstance(prediction, str) and prediction.strip() == ""
+            ):
                 no_prediction += 1
 
             # Use the pre-calculated "pass" field

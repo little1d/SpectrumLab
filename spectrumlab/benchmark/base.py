@@ -2,6 +2,7 @@ from abc import ABC
 from pathlib import Path
 from typing import List, Dict, Union
 import json
+import os
 
 
 class BaseGroup(ABC):
@@ -60,14 +61,26 @@ class BaseGroup(ABC):
         # TODO
         self.datasets = {}
 
-    def _fix_image_path(self, image_path: str) -> str:
-        if not image_path or not image_path.strip():
+    def _fix_image_path(self, image_path):
+        if isinstance(image_path, list):
+            return [self._fix_image_path(p) for p in image_path]
+        if not image_path or not str(image_path).strip():
             return image_path
-        if image_path.startswith("./data/"):
-            relative_part = image_path[7:]
+        # 支持 ./data/ 和 data/ 开头
+        s = str(image_path)
+        if s.startswith("./data/"):
+            relative_part = s[7:]
             corrected_path = self.data_root / relative_part
             return str(corrected_path)
-        return image_path
+        if s.startswith("data/"):
+            corrected_path = self.data_root / s[5:]
+            return str(corrected_path)
+        # 如果已经是绝对路径，直接返回
+        if os.path.isabs(s):
+            return s
+        # 其它相对路径，拼到 data_root 下
+        corrected_path = self.data_root / s
+        return str(corrected_path)
 
     def _load_json(self, file_path: Path) -> List[Dict]:
         try:
@@ -79,7 +92,19 @@ class BaseGroup(ABC):
                             if item["image_path"]:
                                 original_path = item["image_path"]
                                 item["image_path"] = self._fix_image_path(original_path)
-
+                        # 修正 answer 字段（如果是图片路径或图片路径 list）
+                        if isinstance(item, dict) and "answer" in item:
+                            answer = item["answer"]
+                            # 只修正字符串类型且像图片路径的 answer
+                            if isinstance(answer, str) and answer.lower().endswith(
+                                (".png", ".jpg", ".jpeg", ".bmp", ".gif", ".webp")
+                            ):
+                                item["answer"] = self._fix_image_path(answer)
+                            # 如果 answer 是 list（极少见），也递归修正
+                            if isinstance(answer, list):
+                                item["answer"] = [
+                                    self._fix_image_path(a) for a in answer
+                                ]
                     return data
                 else:
                     print(f"Warning: Expected list in {file_path}, got {type(data)}")
