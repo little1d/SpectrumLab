@@ -75,6 +75,7 @@ class GPT4_1(BaseAPIModel):
         except Exception as e:
             raise RuntimeError(f"GPT-4.1 API call failed: {e}")
 
+
 class GPT4_Vision(BaseAPIModel):
     def __init__(
         self,

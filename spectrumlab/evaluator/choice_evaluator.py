@@ -16,7 +16,6 @@ class ChoiceEvaluator(BaseEvaluator):
         choices = item.get("choices", [])
         image_paths_field = item.get("image_path")
 
-        # 构建选项文本
         option_lines = [f"{chr(65 + i)}. {choice}" for i, choice in enumerate(choices)]
         options_block = "\n".join(option_lines)
 

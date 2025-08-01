@@ -1,5 +1,5 @@
 import swanlab
-from spectrumlab.models import GPT4o
+from spectrumlab.models import GPT4_1
 from spectrumlab.benchmark.signal_group import SignalGroup
 from spectrumlab.benchmark.generation_group import GenerationGroup
 from spectrumlab.benchmark.perception_group import PerceptionGroup
@@ -10,11 +10,12 @@ from spectrumlab.evaluator.open_evaluator import OpenEvaluator
 # export your swanlab api-key
 
 # Change your model!
-MODEL = GPT4o()
+# MODEL = GPT4o()
+MODEL = GPT4_1()
 
 
 # Change this!!! such as gpt-4o_evaluation_results
-SAVE_DIR = "./gpt-4o_evaluation_results"
+SAVE_DIR = "./gpt4_1_generation_evaluation_results"
 
 # 定义每个 Group 及其子任务和评测器
 GROUPS = [
@@ -23,12 +24,6 @@ GROUPS = [
         "group": SignalGroup("data"),
         "evaluator": ChoiceEvaluator(),
         "subcategories": None,  # None 表示全部
-    },
-    {
-        "name": "Generation",
-        "group": GenerationGroup("data"),
-        "evaluator": OpenEvaluator(),
-        "subcategories": None,
     },
     {
         "name": "Perception",
@@ -42,13 +37,19 @@ GROUPS = [
         "evaluator": ChoiceEvaluator(),
         "subcategories": None,
     },
+    {
+        "name": "Generation",
+        "group": GenerationGroup("data"),
+        "evaluator": OpenEvaluator(),
+        "subcategories": None,
+    },
 ]
 
 # Change the experiment_name to your model name!!!
 swanlab.init(
     workspace="SpectrumLab",
     project="spectrumlab-eval",
-    experiment_name="gpt-4o_evaluation_results",
+    experiment_name="gpt_4_1_generation_evaluation_results",
     config={"model": MODEL.model_name},
 )
 
