@@ -1,4 +1,4 @@
-import swanlab
+# import swanlab
 from spectrumlab.models import GPT4_1
 from spectrumlab.benchmark.signal_group import SignalGroup
 from spectrumlab.benchmark.generation_group import GenerationGroup
@@ -46,12 +46,12 @@ GROUPS = [
 ]
 
 # Change the experiment_name to your model name!!!
-swanlab.init(
-    workspace="SpectrumLab",
-    project="spectrumlab-eval",
-    experiment_name="gpt_4_1_generation_evaluation_results",
-    config={"model": MODEL.model_name},
-)
+# swanlab.init(
+#     workspace="SpectrumLab",
+#     project="spectrumlab-eval",
+#     experiment_name="gpt_4_1_generation_evaluation_results",
+#     config={"model": MODEL.model_name},
+# )
 
 for group_info in GROUPS:
     name = group_info["name"]
@@ -63,9 +63,9 @@ for group_info in GROUPS:
     results = evaluator.evaluate(data_items=data, model=MODEL, save_path=SAVE_DIR)
     accuracy = results["metrics"]["overall"]["accuracy"]
     print(f"{name} Group evaluation completed! Overall accuracy: {accuracy:.2f}%\n")
-    swanlab.log({f"{name}_accuracy": accuracy})
+    # swanlab.log({f"{name}_accuracy": accuracy})
 
-swanlab.finish()
+# swanlab.finish()
 
 # use nohup in the terminal to start the evaluation
 # nohup python run_evaluation.py > run_eval.log 2>&1 &
