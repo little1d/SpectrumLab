@@ -1,0 +1,1465 @@
+{
+    "leaderboard_info": {
+        "total_models": 18
+    },
+    "models": [
+        {
+            "name": "Claude-3.7-Sonnet",
+            "name_link": "https://www.anthropic.com/claude",
+            "submitter": "Anthropic Team",
+            "submitter_link": "mailto:support@anthropic.com",
+            "submission_time": "2025-08-01T17:09:29.917540Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 75.78,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 96.36
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 38.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 86.27
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 82.14
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 79.9,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 71.43
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 88.89
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 71.05
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 88.24
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 81.94,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 82.28
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 74.36
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 89.19
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 8.42,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 20.0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 5.26
+                        }
+                    }
+                },
+                "overall_accuracy": 61.51
+            },
+            "model_info": {
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 3.7 Sonnet with enhanced multimodal capabilities"
+            }
+        },
+        {
+            "name": "Doubao-1.5-Vision-Pro-Thinking",
+            "name_link": "https://www.volcengine.com/product/doubao",
+            "submitter": "ByteDance Team",
+            "submitter_link": "https://www.volcengine.com/",
+            "submission_time": "2025-08-01T17:09:29.934647Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 69.41,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 96.36
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 35.0
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 78.43
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 67.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 74.69,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 53.33
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 80.56
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 73.68
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 91.18
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 75.77,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 68.75
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 66.67
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 91.89
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 25.64,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 66.67
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 5.0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 5.26
+                        }
+                    }
+                },
+                "overall_accuracy": 61.38
+            },
+            "model_info": {
+                "homepage": "https://www.volcengine.com/product/doubao",
+                "paper": "",
+                "code": "",
+                "description": "Doubao 1.5 Vision Pro with enhanced reasoning capabilities"
+            }
+        },
+        {
+            "name": "Qwen2.5-VL-72B-Instruct",
+            "name_link": "https://qwenlm.github.io/",
+            "submitter": "Alibaba DAMO Academy",
+            "submitter_link": "https://damo.alibaba.com/",
+            "submission_time": "2025-08-01T17:09:29.925741Z",
+            "model_type": "open_source",
+            "model_size": "72B",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 78.0,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 94.55
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 38.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 86.27
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 92.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 72.49,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 42.22
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 80.56
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 78.95
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 88.24
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 78.35,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 66.25
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 76.92
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 91.89
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 13.51,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 30.0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 10.53
+                        }
+                    }
+                },
+                "overall_accuracy": 60.59
+            },
+            "model_info": {
+                "homepage": "https://qwenlm.github.io/",
+                "paper": "https://arxiv.org/abs/2407.10671",
+                "code": "https://github.com/QwenLM/Qwen2.5",
+                "description": "Qwen2.5-VL-72B large-scale open-source vision-language model"
+            }
+        },
+        {
+            "name": "GPT-4.1",
+            "name_link": "https://openai.com/gpt-4",
+            "submitter": "OpenAI Team",
+            "submitter_link": "mailto:research@openai.com",
+            "submission_time": "2025-08-01T17:09:29.920918Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 73.72,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 94.55
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 28.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 86.27
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 85.71
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 68.42,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 53.33
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 77.78
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 63.16
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 79.41
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 80.35,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 82.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 66.67
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 91.89
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 14.62,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 33.33
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 10.53
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 59.28
+            },
+            "model_info": {
+                "homepage": "https://openai.com/gpt-4",
+                "paper": "https://arxiv.org/abs/2303.08774",
+                "code": "",
+                "description": "GPT-4.1 with improved reasoning capabilities"
+            }
+        },
+        {
+            "name": "Qwen-VL-Max",
+            "name_link": "https://qwenlm.github.io/",
+            "submitter": "Alibaba DAMO Academy",
+            "submitter_link": "https://damo.alibaba.com/",
+            "submission_time": "2025-08-01T17:09:29.923747Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 78.57,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 94.55
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 36.67
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 90.2
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 92.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 76.94,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 60.0
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 80.56
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 78.95
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 88.24
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 65.39,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 32.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 71.79
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 91.89
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 16.2,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 43.33
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 5.26
+                        }
+                    }
+                },
+                "overall_accuracy": 59.27
+            },
+            "model_info": {
+                "homepage": "https://qwenlm.github.io/",
+                "paper": "https://arxiv.org/abs/2308.12966",
+                "code": "https://github.com/QwenLM/Qwen-VL",
+                "description": "Qwen-VL-Max with advanced vision-language understanding"
+            }
+        },
+        {
+            "name": "GPT-4-Vision",
+            "name_link": "https://openai.com/gpt-4",
+            "submitter": "OpenAI Team",
+            "submitter_link": "mailto:research@openai.com",
+            "submission_time": "2025-08-01T17:09:29.921628Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 73.32,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 94.55
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 33.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 72.55
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 92.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 74.74,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 73.33
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 72.22
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 71.05
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 82.35
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 74.97,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 73.75
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 53.85
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 97.3
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 9.44,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 23.33
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 5.0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 58.12
+            },
+            "model_info": {
+                "homepage": "https://openai.com/gpt-4",
+                "paper": "https://arxiv.org/abs/2303.08774",
+                "code": "",
+                "description": "GPT-4 with vision capabilities for multimodal understanding"
+            }
+        },
+        {
+            "name": "Claude-3.5-Sonnet",
+            "name_link": "https://www.anthropic.com/claude",
+            "submitter": "Anthropic Team",
+            "submitter_link": "mailto:support@anthropic.com",
+            "submission_time": "2025-08-01T17:09:29.916821Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 68.15,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 96.36
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 28.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 76.47
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 71.43
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 74.85,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 60.0
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 77.78
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 76.32
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 85.29
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 82.11,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 82.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 69.23
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 94.59
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 6.67,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 20.0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 57.95
+            },
+            "model_info": {
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 3.5 Sonnet with advanced reasoning and multimodal capabilities"
+            }
+        },
+        {
+            "name": "Claude-4-Opus",
+            "name_link": "https://www.anthropic.com/claude",
+            "submitter": "Anthropic Team",
+            "submitter_link": "mailto:support@anthropic.com",
+            "submission_time": "2025-08-01T17:09:29.919719Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 77.2,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 96.36
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 33.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 86.27
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 92.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 78.25,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 73.33
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 83.33
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 71.05
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 85.29
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 65.3,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 32.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 76.92
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 86.49
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 7.31,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 16.67
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 5.26
+                        }
+                    }
+                },
+                "overall_accuracy": 57.02
+            },
+            "model_info": {
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 4 Opus - most capable model in the Claude family"
+            }
+        },
+        {
+            "name": "Doubao-1.5-Vision-Pro",
+            "name_link": "https://www.volcengine.com/product/doubao",
+            "submitter": "ByteDance Team",
+            "submitter_link": "https://www.volcengine.com/",
+            "submission_time": "2025-08-01T17:09:29.932862Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 75.7,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 98.18
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 33.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 78.43
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 92.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 76.66,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 66.67
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 83.33
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 68.42
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 88.24
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 71.03,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 67.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 56.41
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 89.19
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 2.22,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 6.67
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 56.4
+            },
+            "model_info": {
+                "homepage": "https://www.volcengine.com/product/doubao",
+                "paper": "",
+                "code": "",
+                "description": "Doubao 1.5 Vision Pro multimodal model"
+            }
+        },
+        {
+            "name": "InternVL3-78B",
+            "name_link": "https://internvl.github.io/",
+            "submitter": "Shanghai AI Laboratory",
+            "submitter_link": "https://www.shlab.org.cn/",
+            "submission_time": "2025-08-01T17:09:29.926853Z",
+            "model_type": "open_source",
+            "model_size": "78B",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 69.18,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 96.36
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 38.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 70.59
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 71.43
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 73.33,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 48.49
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 75.0
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 81.58
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 88.24
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 71.84,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 62.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 69.23
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 83.78
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 9.53,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 23.33
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 5.26
+                        }
+                    }
+                },
+                "overall_accuracy": 55.97
+            },
+            "model_info": {
+                "homepage": "https://internvl.github.io/",
+                "paper": "https://arxiv.org/abs/2312.14238",
+                "code": "https://github.com/OpenGVLab/InternVL",
+                "description": "InternVL3-78B large-scale multimodal foundation model"
+            }
+        },
+        {
+            "name": "GPT-4o",
+            "name_link": "https://openai.com/gpt-4",
+            "submitter": "OpenAI Team",
+            "submitter_link": "mailto:research@openai.com",
+            "submission_time": "2025-08-01T17:09:29.920289Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 72.8,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 96.36
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 33.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 68.63
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 92.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 69.53,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 57.78
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 77.78
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 63.16
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 79.41
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 77.44,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 78.75
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 58.97
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 94.59
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 3.33,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 10.0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 55.77
+            },
+            "model_info": {
+                "homepage": "https://openai.com/gpt-4",
+                "paper": "https://arxiv.org/abs/2303.08774",
+                "code": "",
+                "description": "GPT-4o with enhanced multimodal capabilities"
+            }
+        },
+        {
+            "name": "Grok-2-Vision",
+            "name_link": "https://grok.x.ai/",
+            "submitter": "xAI Team",
+            "submitter_link": "mailto:team@x.ai",
+            "submission_time": "2025-08-01T17:09:29.922697Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 72.5,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 94.55
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 31.67
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 74.51
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 89.29
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 75.26,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 64.44
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 80.56
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 73.68
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 82.35
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 61.75,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 37.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 66.67
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 81.08
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 7.78,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 23.33
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 54.32
+            },
+            "model_info": {
+                "homepage": "https://grok.x.ai/",
+                "paper": "",
+                "code": "",
+                "description": "Grok-2 with vision capabilities for multimodal reasoning"
+            }
+        },
+        {
+            "name": "Claude-3.5-Haiku",
+            "name_link": "https://www.anthropic.com/claude",
+            "submitter": "Anthropic Team",
+            "submitter_link": "mailto:support@anthropic.com",
+            "submission_time": "2025-08-01T17:09:29.919136Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 67.52,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 94.55
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 31.67
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 50.98
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 92.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 73.61,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 66.67
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 75.0
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 76.32
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 76.47
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 70.89,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 67.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 64.1
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 81.08
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 3.33,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 10.0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 53.84
+            },
+            "model_info": {
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 3.5 Haiku - fast and efficient multimodal model"
+            }
+        },
+        {
+            "name": "Claude-4-Sonnet",
+            "name_link": "https://www.anthropic.com/claude",
+            "submitter": "Anthropic Team",
+            "submitter_link": "mailto:support@anthropic.com",
+            "submission_time": "2025-08-01T17:09:29.918518Z",
+            "model_type": "proprietary",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 78.11,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 96.36
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 35.0
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 88.24
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 92.86
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 65.78,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 62.22
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 63.89
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 60.53
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 76.47
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 41.57,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 16.25
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 43.59
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 64.86
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 8.13,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 3.33
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 21.05
+                        }
+                    }
+                },
+                "overall_accuracy": 48.4
+            },
+            "model_info": {
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 4 Sonnet with advanced reasoning capabilities"
+            }
+        },
+        {
+            "name": "Qwen2.5-VL-32B-Instruct",
+            "name_link": "https://qwenlm.github.io/",
+            "submitter": "Alibaba DAMO Academy",
+            "submitter_link": "https://damo.alibaba.com/",
+            "submission_time": "2025-08-01T17:09:29.924718Z",
+            "model_type": "open_source",
+            "model_size": "32B",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 57.02,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 92.73
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 26.67
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 37.25
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 71.43
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 48.89,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 57.78
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 44.44
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 31.58
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 61.76
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 17.03,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 0.0
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 5.13
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 45.95
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 6.67,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 20.0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 32.4
+            },
+            "model_info": {
+                "homepage": "https://qwenlm.github.io/",
+                "paper": "https://arxiv.org/abs/2407.10671",
+                "code": "https://github.com/QwenLM/Qwen2.5",
+                "description": "Qwen2.5-VL-32B open-source vision-language model"
+            }
+        },
+        {
+            "name": "DeepSeek-VL2",
+            "name_link": "https://www.deepseek.com/",
+            "submitter": "DeepSeek Team",
+            "submitter_link": "https://github.com/deepseek-ai",
+            "submission_time": "2025-08-01T17:09:29.931327Z",
+            "model_type": "open_source",
+            "model_size": "Unknown",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 33.51,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 52.73
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 23.33
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 29.41
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 28.57
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 28.91,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 8.89
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 27.78
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 28.95
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 50.0
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 20.94,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 15.0
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 15.38
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 32.43
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 6.75,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 10.0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 5.0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 5.26
+                        }
+                    }
+                },
+                "overall_accuracy": 22.53
+            },
+            "model_info": {
+                "homepage": "https://www.deepseek.com/",
+                "paper": "https://arxiv.org/abs/2412.10302",
+                "code": "https://github.com/deepseek-ai/DeepSeek-VL2",
+                "description": "DeepSeek-VL2 advanced vision-language model"
+            }
+        },
+        {
+            "name": "Llama-3.2-90B-Vision-Instruct",
+            "name_link": "https://llama.meta.com/",
+            "submitter": "Meta AI",
+            "submitter_link": "https://ai.meta.com/",
+            "submission_time": "2025-08-01T17:09:29.929751Z",
+            "model_type": "open_source",
+            "model_size": "90B",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 27.12,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 38.18
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 10.0
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 35.29
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 25.0
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 23.77,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 17.78
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 27.78
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 28.95
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 20.59
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 23.21,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 21.25
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 5.13
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 43.24
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 0,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 18.52
+            },
+            "model_info": {
+                "homepage": "https://llama.meta.com/",
+                "paper": "https://arxiv.org/abs/2407.21783",
+                "code": "https://github.com/meta-llama/llama3",
+                "description": "Llama 3.2 90B with vision capabilities"
+            }
+        },
+        {
+            "name": "Llama-3.2-11B-Vision-Instruct",
+            "name_link": "https://llama.meta.com/",
+            "submitter": "Meta AI",
+            "submitter_link": "https://ai.meta.com/",
+            "submission_time": "2025-08-01T17:09:29.928044Z",
+            "model_type": "open_source",
+            "model_size": "11B",
+            "is_multimodal": true,
+            "results": {
+                "Signal": {
+                    "accuracy": 21.24,
+                    "subcategories": {
+                        "Spectrum Type Classification": {
+                            "accuracy": 34.55
+                        },
+                        "Spectrum Quality Assessment": {
+                            "accuracy": 11.67
+                        },
+                        "Basic Feature Extraction": {
+                            "accuracy": 13.73
+                        },
+                        "Impurity Peak Detection": {
+                            "accuracy": 25.0
+                        }
+                    }
+                },
+                "Perception": {
+                    "accuracy": 26.72,
+                    "subcategories": {
+                        "Functional Group Recognition": {
+                            "accuracy": 20.0
+                        },
+                        "Elemental Compositional Prediction": {
+                            "accuracy": 41.67
+                        },
+                        "Peak Assignment": {
+                            "accuracy": 15.79
+                        },
+                        "Basic Property Prediction": {
+                            "accuracy": 29.41
+                        }
+                    }
+                },
+                "Semantic": {
+                    "accuracy": 11.42,
+                    "subcategories": {
+                        "Molecular Structure Elucidation": {
+                            "accuracy": 7.5
+                        },
+                        "Fusing Spectroscopic Modalities": {
+                            "accuracy": 5.13
+                        },
+                        "Multimodal Molecular Reasoning": {
+                            "accuracy": 21.62
+                        }
+                    }
+                },
+                "Generation": {
+                    "accuracy": 0,
+                    "subcategories": {
+                        "Forward Problems": {
+                            "accuracy": 0
+                        },
+                        "Inverse Problems": {
+                            "accuracy": 0
+                        },
+                        "De Novo Generation": {
+                            "accuracy": 0
+                        }
+                    }
+                },
+                "overall_accuracy": 14.84
+            },
+            "model_info": {
+                "homepage": "https://llama.meta.com/",
+                "paper": "https://arxiv.org/abs/2407.21783",
+                "code": "https://github.com/meta-llama/llama3",
+                "description": "Llama 3.2 11B with vision capabilities"
+            }
+        }
+    ]
+}

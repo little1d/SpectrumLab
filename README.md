@@ -35,7 +35,7 @@ uv pip install -e .
 
    Benchmark data is hosted on Hugging Face. Please download it from the following link:
 
-   [https://huggingface.co/datasets/SpectrumWorld/spectrumbench_v_1.0](https://huggingface.co/datasets/SpectrumWorld/spectrumbench_v_1.0)
+   [https://huggingface.co/datasets/SpectrumWorld/spectrumbench_v_1.0](https://huggingface.co/SpectrumWorld/spectrumbench_v_1.0/tree/main)
 
    After downloading, extract the data to the `data` directory in the project root.
 

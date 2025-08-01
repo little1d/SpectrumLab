@@ -1,0 +1,707 @@
+{
+    "clear_existing": true,
+    "models": [
+        {
+            "model_info": {
+                "name": "Claude-3.5-Sonnet",
+                "name_link": "https://www.anthropic.com/claude",
+                "submitter": "Anthropic Team",
+                "submitter_link": "mailto:support@anthropic.com",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 3.5 Sonnet with advanced reasoning and multimodal capabilities"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 96.36,
+                    "Spectrum Quality Assessment": 28.33,
+                    "Basic Feature Extraction": 76.47,
+                    "Impurity Peak Detection": 71.43
+                },
+                "Perception": {
+                    "Functional Group Recognition": 60.00,
+                    "Elemental Compositional Prediction": 77.78,
+                    "Peak Assignment": 76.32,
+                    "Basic Property Prediction": 85.29
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 82.50,
+                    "Fusing Spectroscopic Modalities": 69.23,
+                    "Multimodal Molecular Reasoning": 94.59
+                },
+                "Generation": {
+                    "Forward Problems": 20.00,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Claude-3.7-Sonnet",
+                "name_link": "https://www.anthropic.com/claude",
+                "submitter": "Anthropic Team",
+                "submitter_link": "mailto:support@anthropic.com",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 3.7 Sonnet with enhanced multimodal capabilities"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 96.36,
+                    "Spectrum Quality Assessment": 38.33,
+                    "Basic Feature Extraction": 86.27,
+                    "Impurity Peak Detection": 82.14
+                },
+                "Perception": {
+                    "Functional Group Recognition": 71.43,
+                    "Elemental Compositional Prediction": 88.89,
+                    "Peak Assignment": 71.05,
+                    "Basic Property Prediction": 88.24
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 82.28,
+                    "Fusing Spectroscopic Modalities": 74.36,
+                    "Multimodal Molecular Reasoning": 89.19
+                },
+                "Generation": {
+                    "Forward Problems": 20.00,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 5.26
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Claude-4-Sonnet",
+                "name_link": "https://www.anthropic.com/claude",
+                "submitter": "Anthropic Team",
+                "submitter_link": "mailto:support@anthropic.com",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 4 Sonnet with advanced reasoning capabilities"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 96.36,
+                    "Spectrum Quality Assessment": 35.00,
+                    "Basic Feature Extraction": 88.24,
+                    "Impurity Peak Detection": 92.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 62.22,
+                    "Elemental Compositional Prediction": 63.89,
+                    "Peak Assignment": 60.53,
+                    "Basic Property Prediction": 76.47
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 16.25,
+                    "Fusing Spectroscopic Modalities": 43.59,
+                    "Multimodal Molecular Reasoning": 64.86
+                },
+                "Generation": {
+                    "Forward Problems": 3.33,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 21.05
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Claude-3.5-Haiku",
+                "name_link": "https://www.anthropic.com/claude",
+                "submitter": "Anthropic Team",
+                "submitter_link": "mailto:support@anthropic.com",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 3.5 Haiku - fast and efficient multimodal model"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 94.55,
+                    "Spectrum Quality Assessment": 31.67,
+                    "Basic Feature Extraction": 50.98,
+                    "Impurity Peak Detection": 92.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 66.67,
+                    "Elemental Compositional Prediction": 75.00,
+                    "Peak Assignment": 76.32,
+                    "Basic Property Prediction": 76.47
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 67.50,
+                    "Fusing Spectroscopic Modalities": 64.10,
+                    "Multimodal Molecular Reasoning": 81.08
+                },
+                "Generation": {
+                    "Forward Problems": 10.00,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Claude-4-Opus",
+                "name_link": "https://www.anthropic.com/claude",
+                "submitter": "Anthropic Team",
+                "submitter_link": "mailto:support@anthropic.com",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://www.anthropic.com/claude",
+                "paper": "",
+                "code": "",
+                "description": "Claude 4 Opus - most capable model in the Claude family"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 96.36,
+                    "Spectrum Quality Assessment": 33.33,
+                    "Basic Feature Extraction": 86.27,
+                    "Impurity Peak Detection": 92.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 73.33,
+                    "Elemental Compositional Prediction": 83.33,
+                    "Peak Assignment": 71.05,
+                    "Basic Property Prediction": 85.29
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 32.50,
+                    "Fusing Spectroscopic Modalities": 76.92,
+                    "Multimodal Molecular Reasoning": 86.49
+                },
+                "Generation": {
+                    "Forward Problems": 16.67,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 5.26
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "GPT-4o",
+                "name_link": "https://openai.com/gpt-4",
+                "submitter": "OpenAI Team",
+                "submitter_link": "mailto:research@openai.com",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://openai.com/gpt-4",
+                "paper": "https://arxiv.org/abs/2303.08774",
+                "code": "",
+                "description": "GPT-4o with enhanced multimodal capabilities"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 96.36,
+                    "Spectrum Quality Assessment": 33.33,
+                    "Basic Feature Extraction": 68.63,
+                    "Impurity Peak Detection": 92.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 57.78,
+                    "Elemental Compositional Prediction": 77.78,
+                    "Peak Assignment": 63.16,
+                    "Basic Property Prediction": 79.41
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 78.75,
+                    "Fusing Spectroscopic Modalities": 58.97,
+                    "Multimodal Molecular Reasoning": 94.59
+                },
+                "Generation": {
+                    "Forward Problems": 10.00,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "GPT-4.1",
+                "name_link": "https://openai.com/gpt-4",
+                "submitter": "OpenAI Team",
+                "submitter_link": "mailto:research@openai.com",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://openai.com/gpt-4",
+                "paper": "https://arxiv.org/abs/2303.08774",
+                "code": "",
+                "description": "GPT-4.1 with improved reasoning capabilities"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 94.55,
+                    "Spectrum Quality Assessment": 28.33,
+                    "Basic Feature Extraction": 86.27,
+                    "Impurity Peak Detection": 85.71
+                },
+                "Perception": {
+                    "Functional Group Recognition": 53.33,
+                    "Elemental Compositional Prediction": 77.78,
+                    "Peak Assignment": 63.16,
+                    "Basic Property Prediction": 79.41
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 82.50,
+                    "Fusing Spectroscopic Modalities": 66.67,
+                    "Multimodal Molecular Reasoning": 91.89
+                },
+                "Generation": {
+                    "Forward Problems": 33.33,
+                    "Inverse Problems": 10.53,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "GPT-4-Vision",
+                "name_link": "https://openai.com/gpt-4",
+                "submitter": "OpenAI Team",
+                "submitter_link": "mailto:research@openai.com",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://openai.com/gpt-4",
+                "paper": "https://arxiv.org/abs/2303.08774",
+                "code": "",
+                "description": "GPT-4 with vision capabilities for multimodal understanding"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 94.55,
+                    "Spectrum Quality Assessment": 33.33,
+                    "Basic Feature Extraction": 72.55,
+                    "Impurity Peak Detection": 92.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 73.33,
+                    "Elemental Compositional Prediction": 72.22,
+                    "Peak Assignment": 71.05,
+                    "Basic Property Prediction": 82.35
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 73.75,
+                    "Fusing Spectroscopic Modalities": 53.85,
+                    "Multimodal Molecular Reasoning": 97.30
+                },
+                "Generation": {
+                    "Forward Problems": 23.33,
+                    "Inverse Problems": 5.00,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Grok-2-Vision",
+                "name_link": "https://grok.x.ai/",
+                "submitter": "xAI Team",
+                "submitter_link": "mailto:team@x.ai",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://grok.x.ai/",
+                "paper": "",
+                "code": "",
+                "description": "Grok-2 with vision capabilities for multimodal reasoning"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 94.55,
+                    "Spectrum Quality Assessment": 31.67,
+                    "Basic Feature Extraction": 74.51,
+                    "Impurity Peak Detection": 89.29
+                },
+                "Perception": {
+                    "Functional Group Recognition": 64.44,
+                    "Elemental Compositional Prediction": 80.56,
+                    "Peak Assignment": 73.68,
+                    "Basic Property Prediction": 82.35
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 37.50,
+                    "Fusing Spectroscopic Modalities": 66.67,
+                    "Multimodal Molecular Reasoning": 81.08
+                },
+                "Generation": {
+                    "Forward Problems": 23.33,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Qwen-VL-Max",
+                "name_link": "https://qwenlm.github.io/",
+                "submitter": "Alibaba DAMO Academy",
+                "submitter_link": "https://damo.alibaba.com/",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://qwenlm.github.io/",
+                "paper": "https://arxiv.org/abs/2308.12966",
+                "code": "https://github.com/QwenLM/Qwen-VL",
+                "description": "Qwen-VL-Max with advanced vision-language understanding"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 94.55,
+                    "Spectrum Quality Assessment": 36.67,
+                    "Basic Feature Extraction": 90.20,
+                    "Impurity Peak Detection": 92.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 60.00,
+                    "Elemental Compositional Prediction": 80.56,
+                    "Peak Assignment": 78.95,
+                    "Basic Property Prediction": 88.24
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 32.50,
+                    "Fusing Spectroscopic Modalities": 71.79,
+                    "Multimodal Molecular Reasoning": 91.89
+                },
+                "Generation": {
+                    "Forward Problems": 43.33,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 5.26
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Qwen2.5-VL-32B-Instruct",
+                "name_link": "https://qwenlm.github.io/",
+                "submitter": "Alibaba DAMO Academy",
+                "submitter_link": "https://damo.alibaba.com/",
+                "model_type": "open_source",
+                "model_size": "32B",
+                "is_multimodal": true,
+                "homepage": "https://qwenlm.github.io/",
+                "paper": "https://arxiv.org/abs/2407.10671",
+                "code": "https://github.com/QwenLM/Qwen2.5",
+                "description": "Qwen2.5-VL-32B open-source vision-language model"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 92.73,
+                    "Spectrum Quality Assessment": 26.67,
+                    "Basic Feature Extraction": 37.25,
+                    "Impurity Peak Detection": 71.43
+                },
+                "Perception": {
+                    "Functional Group Recognition": 57.78,
+                    "Elemental Compositional Prediction": 44.44,
+                    "Peak Assignment": 31.58,
+                    "Basic Property Prediction": 61.76
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 0.00,
+                    "Fusing Spectroscopic Modalities": 5.13,
+                    "Multimodal Molecular Reasoning": 45.95
+                },
+                "Generation": {
+                    "Forward Problems": 20.00,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Qwen2.5-VL-72B-Instruct",
+                "name_link": "https://qwenlm.github.io/",
+                "submitter": "Alibaba DAMO Academy",
+                "submitter_link": "https://damo.alibaba.com/",
+                "model_type": "open_source",
+                "model_size": "72B",
+                "is_multimodal": true,
+                "homepage": "https://qwenlm.github.io/",
+                "paper": "https://arxiv.org/abs/2407.10671",
+                "code": "https://github.com/QwenLM/Qwen2.5",
+                "description": "Qwen2.5-VL-72B large-scale open-source vision-language model"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 94.55,
+                    "Spectrum Quality Assessment": 38.33,
+                    "Basic Feature Extraction": 86.27,
+                    "Impurity Peak Detection": 92.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 42.22,
+                    "Elemental Compositional Prediction": 80.56,
+                    "Peak Assignment": 78.95,
+                    "Basic Property Prediction": 88.24
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 66.25,
+                    "Fusing Spectroscopic Modalities": 76.92,
+                    "Multimodal Molecular Reasoning": 91.89
+                },
+                "Generation": {
+                    "Forward Problems": 30.00,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 10.53
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "InternVL3-78B",
+                "name_link": "https://internvl.github.io/",
+                "submitter": "Shanghai AI Laboratory",
+                "submitter_link": "https://www.shlab.org.cn/",
+                "model_type": "open_source",
+                "model_size": "78B",
+                "is_multimodal": true,
+                "homepage": "https://internvl.github.io/",
+                "paper": "https://arxiv.org/abs/2312.14238",
+                "code": "https://github.com/OpenGVLab/InternVL",
+                "description": "InternVL3-78B large-scale multimodal foundation model"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 96.36,
+                    "Spectrum Quality Assessment": 38.33,
+                    "Basic Feature Extraction": 70.59,
+                    "Impurity Peak Detection": 71.43
+                },
+                "Perception": {
+                    "Functional Group Recognition": 48.49,
+                    "Elemental Compositional Prediction": 75.00,
+                    "Peak Assignment": 81.58,
+                    "Basic Property Prediction": 88.24
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 62.50,
+                    "Fusing Spectroscopic Modalities": 69.23,
+                    "Multimodal Molecular Reasoning": 83.78
+                },
+                "Generation": {
+                    "Forward Problems": 23.33,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 5.26
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Llama-3.2-11B-Vision-Instruct",
+                "name_link": "https://llama.meta.com/",
+                "submitter": "Meta AI",
+                "submitter_link": "https://ai.meta.com/",
+                "model_type": "open_source",
+                "model_size": "11B",
+                "is_multimodal": true,
+                "homepage": "https://llama.meta.com/",
+                "paper": "https://arxiv.org/abs/2407.21783",
+                "code": "https://github.com/meta-llama/llama3",
+                "description": "Llama 3.2 11B with vision capabilities"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 34.55,
+                    "Spectrum Quality Assessment": 11.67,
+                    "Basic Feature Extraction": 13.73,
+                    "Impurity Peak Detection": 25.00
+                },
+                "Perception": {
+                    "Functional Group Recognition": 20.00,
+                    "Elemental Compositional Prediction": 41.67,
+                    "Peak Assignment": 15.79,
+                    "Basic Property Prediction": 29.41
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 7.50,
+                    "Fusing Spectroscopic Modalities": 5.13,
+                    "Multimodal Molecular Reasoning": 21.62
+                },
+                "Generation": {
+                    "Forward Problems": 0,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Llama-3.2-90B-Vision-Instruct",
+                "name_link": "https://llama.meta.com/",
+                "submitter": "Meta AI",
+                "submitter_link": "https://ai.meta.com/",
+                "model_type": "open_source",
+                "model_size": "90B",
+                "is_multimodal": true,
+                "homepage": "https://llama.meta.com/",
+                "paper": "https://arxiv.org/abs/2407.21783",
+                "code": "https://github.com/meta-llama/llama3",
+                "description": "Llama 3.2 90B with vision capabilities"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 38.18,
+                    "Spectrum Quality Assessment": 10.00,
+                    "Basic Feature Extraction": 35.29,
+                    "Impurity Peak Detection": 25.00
+                },
+                "Perception": {
+                    "Functional Group Recognition": 17.78,
+                    "Elemental Compositional Prediction": 27.78,
+                    "Peak Assignment": 28.95,
+                    "Basic Property Prediction": 20.59
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 21.25,
+                    "Fusing Spectroscopic Modalities": 5.13,
+                    "Multimodal Molecular Reasoning": 43.24
+                },
+                "Generation": {
+                    "Forward Problems": 0,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "DeepSeek-VL2",
+                "name_link": "https://www.deepseek.com/",
+                "submitter": "DeepSeek Team",
+                "submitter_link": "https://github.com/deepseek-ai",
+                "model_type": "open_source",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://www.deepseek.com/",
+                "paper": "https://arxiv.org/abs/2412.10302",
+                "code": "https://github.com/deepseek-ai/DeepSeek-VL2",
+                "description": "DeepSeek-VL2 advanced vision-language model"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 52.73,
+                    "Spectrum Quality Assessment": 23.33,
+                    "Basic Feature Extraction": 29.41,
+                    "Impurity Peak Detection": 28.57
+                },
+                "Perception": {
+                    "Functional Group Recognition": 8.89,
+                    "Elemental Compositional Prediction": 27.78,
+                    "Peak Assignment": 28.95,
+                    "Basic Property Prediction": 50.00
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 15.00,
+                    "Fusing Spectroscopic Modalities": 15.38,
+                    "Multimodal Molecular Reasoning": 32.43
+                },
+                "Generation": {
+                    "Forward Problems": 10.00,
+                    "Inverse Problems": 5.00,
+                    "De Novo Generation": 5.26
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Doubao-1.5-Vision-Pro",
+                "name_link": "https://www.volcengine.com/product/doubao",
+                "submitter": "ByteDance Team",
+                "submitter_link": "https://www.volcengine.com/",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://www.volcengine.com/product/doubao",
+                "paper": "",
+                "code": "",
+                "description": "Doubao 1.5 Vision Pro multimodal model"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 98.18,
+                    "Spectrum Quality Assessment": 33.33,
+                    "Basic Feature Extraction": 78.43,
+                    "Impurity Peak Detection": 92.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 66.67,
+                    "Elemental Compositional Prediction": 83.33,
+                    "Peak Assignment": 68.42,
+                    "Basic Property Prediction": 88.24
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 67.50,
+                    "Fusing Spectroscopic Modalities": 56.41,
+                    "Multimodal Molecular Reasoning": 89.19
+                },
+                "Generation": {
+                    "Forward Problems": 6.67,
+                    "Inverse Problems": 0,
+                    "De Novo Generation": 0
+                }
+            }
+        },
+        {
+            "model_info": {
+                "name": "Doubao-1.5-Vision-Pro-Thinking",
+                "name_link": "https://www.volcengine.com/product/doubao",
+                "submitter": "ByteDance Team",
+                "submitter_link": "https://www.volcengine.com/",
+                "model_type": "proprietary",
+                "model_size": "Unknown",
+                "is_multimodal": true,
+                "homepage": "https://www.volcengine.com/product/doubao",
+                "paper": "",
+                "code": "",
+                "description": "Doubao 1.5 Vision Pro with enhanced reasoning capabilities"
+            },
+            "scores": {
+                "Signal": {
+                    "Spectrum Type Classification": 96.36,
+                    "Spectrum Quality Assessment": 35.00,
+                    "Basic Feature Extraction": 78.43,
+                    "Impurity Peak Detection": 67.86
+                },
+                "Perception": {
+                    "Functional Group Recognition": 53.33,
+                    "Elemental Compositional Prediction": 80.56,
+                    "Peak Assignment": 73.68,
+                    "Basic Property Prediction": 91.18
+                },
+                "Semantic": {
+                    "Molecular Structure Elucidation": 68.75,
+                    "Fusing Spectroscopic Modalities": 66.67,
+                    "Multimodal Molecular Reasoning": 91.89
+                },
+                "Generation": {
+                    "Forward Problems": 66.67,
+                    "Inverse Problems": 5.00,
+                    "De Novo Generation": 5.26
+                }
+            }
+        }
+    ]
+}
