@@ -4,8 +4,7 @@ import { defineConfig } from 'vitepress'
 export const en = defineConfig({
     lang: 'en-US',
     title: "SpectrumLab",
-    description: "An Excellent Toolkit for Spectral Benchmark.",
-
+    description: "A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy",
     themeConfig: {
         nav: [
             { text: 'Home', link: '/en/' },
@@ -33,7 +32,7 @@ export const en = defineConfig({
         },
         footer: {
             message: 'Released under the MIT License',
-            copyright: 'Copyright © 2024 SpectrumLab'
+            copyright: 'Copyright © 2025 SpectrumLab'
         },
 
         // 英文版本的组件文本

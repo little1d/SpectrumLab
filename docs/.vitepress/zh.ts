@@ -4,35 +4,37 @@ import { defineConfig } from 'vitepress'
 export const zh = defineConfig({
     lang: 'zh-CN',
     title: "SpectrumLab",
-    description: "化学谱学大模型基准测试工具",
+    description: "一个为系统评估和加速谱学深度学习的平台",
     themeConfig: {
         nav: [
-            { text: '首页', link: '/zh/' },
-            { text: '教程', link: '/zh/tutorial' },
-            { text: 'API', link: '/zh/api' },
-            { text: '基准测试', link: '/zh/benchmark' },
+            { text: '首页', link: '/' },
+            { text: '教程', link: '/tutorial' },
+            { text: 'API', link: '/api' },
+            { text: '基准测试', link: '/benchmark' },
+            { text: '排行榜', link: '/leaderboard' },
         ],
         sidebar: {
-            '/zh/': [
+            '/': [
                 {
                     text: '开始使用',
                     items: [
-                        { text: '介绍', link: '/zh/' },
-                        { text: '教程', link: '/zh/tutorial' },
+                        { text: '介绍', link: '/' },
+                        { text: '教程', link: '/tutorial' },
                     ]
                 },
                 {
                     text: '文档',
                     items: [
-                        { text: 'API 参考', link: '/zh/api' },
-                        { text: '基准测试', link: '/zh/benchmark' },
+                        { text: 'API 参考', link: '/api' },
+                        { text: '基准测试', link: '/benchmark' },
+                        { text: '排行榜', link: '/leaderboard' },
                     ]
                 }
             ]
         },
         footer: {
             message: '基于 MIT 许可发布',
-            copyright: 'Copyright © 2024 SpectrumLab'
+            copyright: 'Copyright © 2025 SpectrumLab'
         },
         docFooter: {
             prev: '上一页',
