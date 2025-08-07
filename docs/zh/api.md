@@ -1,98 +1,107 @@
-# API 参考
+# API Reference
 
-SpectrumLab 的详细 API 文档。
+SpectrumLab 提供了简洁而强大的 API 接口，帮助你快速构建光谱学深度学习应用。本文档涵盖了核心模块的使用方法和自定义扩展指南。
 
-## 基准测试模块 (Benchmark)
+## Benchmark 模块
 
-### get_benchmark_group(level)
+Benchmark 模块是 SpectrumLab 的数据访问核心，提供了统一的接口来加载和管理不同层级的光谱学基准测试数据。
 
-获取指定级别的基准测试组。
+### 获取 Benchmark Group
+
+通过 `get_benchmark_group` 函数可以获取四个不同层级的基准测试组：
 
 ```python
 from spectrumlab.benchmark import get_benchmark_group
 
-# 获取感知组
-benchmark = get_benchmark_group("perception")
-
-# 获取语义组
-benchmark = get_benchmark_group("semantic")
-
-# 获取生成组
-benchmark = get_benchmark_group("generation")
-
-# 获取信号组
-benchmark = get_benchmark_group("signal")
+signal_group = get_benchmark_group("signal")        # 信号层
+perception_group = get_benchmark_group("perception")  # 感知层
+semantic_group = get_benchmark_group("semantic")      # 语义层
+generation_group = get_benchmark_group("generation")  # 生成层
 ```
 
-### BaseGroup 类
+### 数据访问
 
-#### get_data_by_subcategories(subcategories)
-
-根据子类别获取数据。
-
-**参数:**
-
-- `subcategories` (str | List[str] | "all"): 子类别名称或列表
-
-**返回:**
-
-- `List[Dict]`: 数据项列表
+每个 Benchmark Group 提供了灵活的数据访问方法：
 
 ```python
-# 获取所有子类别数据
-data = benchmark.get_data_by_subcategories("all")
+# 获取所有数据
+data = signal_group.get_data_by_subcategories("all")
 
 # 获取特定子类别数据
-data = benchmark.get_data_by_subcategories(["IR_spectroscopy", "Raman_spectroscopy"])
+data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
 
-# 获取单个子类别数据
-data = benchmark.get_data_by_subcategories("IR_spectroscopy")
-```
-
-#### get_available_subcategories()
-
-获取所有可用的子类别。
-
-**返回:**
-
-- `List[str]`: 可用子类别列表
-
-```python
-subcategories = benchmark.get_available_subcategories()
+# 获取 Benchmark Group 可用的所有 sub-categories
+subcategories = signal_group.get_available_subcategories()
 print(subcategories)
 ```
 
-## 评估器模块 (Evaluator)
+**方法说明：**
 
-### get_evaluator(level)
+- `get_data_by_subcategories("all")`: 返回该层级下所有子类别的数据
+- `get_data_by_subcategories([...])`: 返回指定子类别的数据列表
+- `get_available_subcategories()`: 查看当前层级包含的所有子类别名称
 
-获取指定级别的评估器。
+## Model 模块
+
+Model 模块提供了统一的模型接口，支持多种预训练模型和自定义模型的集成。
+
+### 使用现有模型
+
+SpectrumLab 内置了多种先进的多模态模型接口：
 
 ```python
-from spectrumlab.evaluator import get_evaluator
+from spectrumlab.models import GPT4oAPI
 
-evaluator = get_evaluator("perception")
+gpt4o = GPT4oAPI()
+
+response = gpt4o.generate("Your Prompts")
 ```
 
-### BaseEvaluator 类
+**支持的模型：**
 
-#### evaluate(data_items, model, max_out_len=512, batch_size=None, save_path="./eval_results")
+- `GPT4oAPI`: OpenAI GPT-4o
+- `ClaudeAPI`: Anthropic Claude 系列
+- `DeepSeekAPI`: DeepSeek-VL
+- `QwenVLAPI`: Qwen-VL 系列
+- `InternVLAPI`: InternVL 系列
 
-运行评估。
+### 自定义模型
 
-**参数:**
-
-- `data_items` (List[Dict]): 数据项列表
-- `model`: 模型对象
-- `max_out_len` (int): 最大输出长度
-- `batch_size` (int, optional): 批大小（暂未实现）
-- `save_path` (str): 结果保存路径
-
-**返回:**
-
-- `Dict`: 评估结果
+通过继承 `BaseModel` 类，你可以轻松集成自己的模型：
 
 ```python
+from spectrumlab.models.base import BaseModel
+
+class CustomModel(BaseModel):
+    def __init__(self):
+        super().__init__()
+        self.model_name = "CustomModel"
+        
+    def generate(self, prompt, max_out_len=512):
+        # 实现你的模型调用逻辑
+        # 这里可以是 API 调用、本地模型推理等
+        return response
+```
+
+**自定义要求：**
+
+- 必须实现 `generate` 方法
+- 支持文本和多模态输入
+- 返回字符串格式的响应
+
+## Evaluator 模块
+
+Evaluator 模块负责模型评估的核心逻辑，提供了标准化的评估流程和灵活的自定义选项。
+
+### 基础使用
+
+对于选择题类型的评估任务，可以直接使用 `ChoiceEvaluator`：
+
+```python
+from spectrumlab.evaluator.choice_evaluator import ChoiceEvaluator
+
+evaluator = ChoiceEvaluator()
+
 results = evaluator.evaluate(
     data_items=data,
     model=model,
@@ -101,171 +110,139 @@ results = evaluator.evaluate(
 )
 ```
 
-### ChoiceEvaluator 类
+**参数说明：**
 
-继承自 BaseEvaluator，专门用于选择题评估。
+- `data_items`: 评估数据列表
+- `model`: 模型实例
+- `max_out_len`: 最大输出长度
+- `save_path`: 结果保存路径
 
-- 支持多模态输入（图像+文本）
-- 使用 `\box{}` 格式提取预测结果
-- 基于 MMAR 的字符串匹配算法
+### 自定义 Evaluator
 
-## 模型模块 (Models)
-
-### GPT4oAPI 类
-
-OpenAI GPT-4o 模型接口。
-
-```python
-from spectrumlab.models import GPT4oAPI
-
-model = GPT4oAPI()
-```
-
-**环境变量:**
-
-- `OPENAI_API_KEY`: OpenAI API 密钥
-
-### DeepSeekAPI 类
-
-DeepSeek 模型接口。
-
-```python
-from spectrumlab.models import DeepSeekAPI
-
-model = DeepSeekAPI()
-```
-
-**环境变量:**
-
-- `DEEPSEEK_API_KEY`: DeepSeek API 密钥
-
-### InternVLAPI 类
-
-InternVL 模型接口。
-
-```python
-from spectrumlab.models import InternVLAPI
-
-model = InternVLAPI()
-```
-
-**环境变量:**
-
-- `INTERNVL_API_KEY`: InternVL API 密钥
-
-## 工具模块 (Utils)
-
-### 图像处理
-
-#### prepare_images_for_prompt(image_paths)
-
-为提示词准备图像数据。
-
-**参数:**
-
-- `image_paths` (List[str]): 图像路径列表
-
-**返回:**
-
-- `List[Dict]`: 图像数据列表
-
-#### normalize_image_paths(image_paths_field)
-
-规范化图像路径。
-
-**参数:**
-
-- `image_paths_field`: 图像路径字段
-
-**返回:**
-
-- `List[str]`: 规范化后的图像路径列表
-
-## 数据结构
-
-### 数据项格式
-
-每个数据项包含以下字段：
-
-```python
-{
-    "question": str,           # 问题文本
-    "choices": List[str],      # 选项列表
-    "answer": str,             # 正确答案
-    "image_path": str,         # 图像路径（可选）
-    "category": str,           # 类别
-    "sub_category": str        # 子类别
-}
-```
-
-### 评估结果格式
-
-```python
-{
-    "metrics": {
-        "overall": {
-            "accuracy": float,      # 整体准确率
-            "correct": int,         # 正确答案数
-            "total": int,           # 总题目数
-            "no_prediction_count": int  # 无预测数
-        },
-        "category_metrics": {
-            "category_name": {
-                "accuracy": float,
-                "correct": int,
-                "total": int
-            }
-        },
-        "subcategory_metrics": {
-            "subcategory_name": {
-                "accuracy": float,
-                "correct": int,
-                "total": int
-            }
-        }
-    },
-    "saved_files": List[str],   # 保存的文件路径
-    "total_items": int          # 总数据项数
-}
-```
-
-## 自定义扩展
-
-### 自定义评估器
+通过继承 `BaseEvaluator` 类，你可以定制评估逻辑以适应特定任务需求：
 
 ```python
 from spectrumlab.evaluator.base import BaseEvaluator
 
 class CustomEvaluator(BaseEvaluator):
-    def _build_prompt(self, item: Dict) -> str:
-        """构建提示词"""
-        # 自定义逻辑
-        pass
+    def _build_prompt(self, item):
+        """构建输入提示词"""
+        question = item["question"]
+        choices = item["choices"]
+        return f"问题：{question}\n选项：{choices}\n请选择正确答案："
     
-    def _extract_prediction(self, response: str, item: Dict) -> str:
-        """提取预测结果"""
-        # 自定义逻辑
-        pass
+    def _extract_prediction(self, response, item):
+        """从模型响应中提取预测结果"""
+        import re
+        match = re.search(r'\box\{([^}]+)\}', response)
+        return match.group(1) if match else ""
     
-    def _calculate_accuracy(self, answer: str, prediction: str, item: Dict) -> bool:
+    def _calculate_accuracy(self, answer, prediction, item):
         """计算准确率"""
-        # 自定义逻辑
-        pass
+        return answer.strip().lower() == prediction.strip().lower()
 ```
 
-### 自定义模型
+**核心方法：**
+
+- `_build_prompt`: 根据数据项构建模型输入
+- `_extract_prediction`: 从模型输出中提取预测答案
+- `_calculate_accuracy`: 判断预测是否正确
+
+## 完整评估示例
+
+以下是一个完整的评估流程示例，展示了从数据加载到结果分析的全过程：
 
 ```python
-from spectrumlab.models.base import BaseModel
+from spectrumlab.benchmark.signal_group import SignalGroup
+from spectrumlab.models import GPT4oAPI
+from spectrumlab.evaluator.choice_evaluator import ChoiceEvaluator
 
-class CustomModel(BaseModel):
-    def generate(self, prompt, max_out_len=512):
-        """生成响应"""
-        # 自定义逻辑
-        pass
+# 1. 加载数据
+signal_group = SignalGroup("data")
+data = signal_group.get_data_by_subcategories(["Spectrum Type Classification"])
+
+# 2. 初始化模型和评估器
+model = GPT4oAPI()
+evaluator = ChoiceEvaluator()
+
+# 3. 运行评估
+results = evaluator.evaluate(
+    data_items=data, 
+    model=model, 
+    save_path="./evaluation_results"
+)
+
+# 4. 查看评估结果
+print(f"评估完成！整体准确率: {results['metrics']['overall']['accuracy']:.2f}%")
+
+# 查看详细结果
+for subcategory, metrics in results['metrics']['subcategory_metrics'].items():
+    print(f"{subcategory}: {metrics['accuracy']:.2f}% ({metrics['correct']}/{metrics['total']})")
 ```
 
-## 相关链接
+## 数据格式
 
-- [教程](/zh/tutorial)
-- [基准测试](/zh/benchmark)
+### 输入数据格式
+
+每个数据项遵循以下格式：
+
+```python
+{
+    "question": "基于该红外光谱图，该化合物最可能是？",
+    "choices": ["苯甲酸", "苯甲醛", "苯甲醇", "苯乙酸"],
+    "answer": "苯甲酸",
+    "image_path": "./data/signal/ir_001.png",  # 可选
+    "category": "Chemistry",
+    "sub_category": "Spectrum Type Classification"
+}
+```
+
+### 输出结果格式
+
+评估结果包含详细的性能指标：
+
+```python
+{
+    "metrics": {
+        "overall": {
+            "accuracy": 85.5,
+            "correct": 171,
+            "total": 200
+        },
+        "subcategory_metrics": {
+            "Spectrum Type Classification": {
+                "accuracy": 90.0,
+                "correct": 45,
+                "total": 50
+            }
+        }
+    },
+    "saved_files": ["result_001.json"],
+    "total_items": 200
+}
+```
+
+## 环境配置
+
+使用 API 模型前需要配置相应的环境变量：
+
+```bash
+# OpenAI 模型
+export OPENAI_API_KEY="your_openai_api_key"
+
+# Anthropic 模型  
+export ANTHROPIC_API_KEY="your_anthropic_api_key"
+
+# DeepSeek 模型
+export DEEPSEEK_API_KEY="your_deepseek_api_key"
+
+# 其他模型...
+```
+
+## 快速开始
+
+1. **安装依赖**：`pip install spectrumlab`
+2. **配置 API 密钥**：设置相应的环境变量
+3. **加载数据**：使用 Benchmark 模块获取评估数据
+4. **选择模型**：初始化预训练模型或自定义模型
+5. **运行评估**：使用 Evaluator 执行评估并保存结果

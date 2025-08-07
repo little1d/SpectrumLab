@@ -1,152 +1,54 @@
-# 教程
+# Tutorial
 
-这里是 SpectrumLab 的详细使用教程。
+欢迎使用 SpectrumLab！本教程将帮助你快速了解谱学分析、SpectrumLab 平台以及如何使用它来评估大语言模型在光谱学任务上的表现。
 
-## 安装
+## 什么是谱学？
 
-```bash
-pip install spectrumlab
-```
+谱学（Spectroscopy）是研究物质与电磁辐射相互作用的科学分支。通过分析物质吸收、发射或散射的光谱，我们可以获得关于物质结构、组成和性质的详细信息。
 
-## 基础概念
+## 谱学的重要性
 
-SpectrumLab 主要包含以下几个核心组件：
+谱学在现代科学中具有重要地位，它通过分析物质与电磁辐射的相互作用，为理解物质的组成、结构和性质提供了关键手段。在化学中，谱学用于分子结构解析和反应机理研究；在材料科学中，它能表征纳米材料并进行表面分析；在生物学中，则用于研究蛋白质折叠和代谢物检测。同时，谱学在临床医学中也被广泛应用，如通过光谱技术实现无创诊断和疾病早期检测，使其成为现代科学研究和应用中不可或缺的工具。
 
-- **Benchmark**: 基准测试数据管理
-- **Evaluator**: 评估器，负责模型评估逻辑
-- **Models**: 模型接口，支持多种 API 模型
-- **Utils**: 工具函数，如图像处理等
+## 常见谱学技术
 
-## 快速开始
+- **红外光谱（IR）**：分析分子振动，识别官能团。IR 谱特征吸收峰（如 C=O、O–H、C–H 等）在特征频率范围内具有标志性，是判断官能团的核心工具
+- **核磁共振（NMR）**：通过化学位移、信号强度和偶合常数提供分子中原子环境和结构连接信息，常用于确定分子结构（尤其有机化合物）
+- **紫外-可见光谱（UV-Vis）**：研究分子的电子跃迁和共轭体系，尤其用于判断电子结构、共轭长度和光学性质，不直接提供结构连接信息
+- **质谱（MS）**：测定分子量并通过碎片组合推断分子结构，是判断分子组成和次级结构的重要工具
+- **拉曼光谱（Raman）**：提供分子振动信息，能识别与 IR 类似的化学键振动，尤其对对称分子和无极性键敏感，经常作为 IR 的互补方法
+- **HSQC 谱图**：一种二维 NMR（^1H–^13C 或 ^1H–^15N）实验，每个交叉点代表一个直接键连接的质子–杂核对，可用于明确 ^1H–^13C（或 ^15N）一键归属，辅助峰归属和结构解析
 
-### 1. 数据加载
+## 什么是 SpectrumLab？
 
-```python
-from spectrumlab.benchmark import get_benchmark_group
+### 概述
 
-# 加载感知组数据
-benchmark = get_benchmark_group("perception")
+SpectrumLab 是一个开创性的统一平台和综合工具包，为加速和系统化化学光谱学领域的深度学习研究而设计。它旨在简化从数据预处理到模型评估的整个 AI 驱动的光谱学研究生命周期，为研究人员和开发者提供一个模块化、可扩展且易于使用的 Python 库和工具生态系统，以推动光谱学领域的人工智能研究和应用。
 
-# 获取所有子类别数据
-data = benchmark.get_data_by_subcategories("all")
+### 核心功能
 
-# 获取特定子类别数据
-data = benchmark.get_data_by_subcategories(["IR_spectroscopy", "Raman_spectroscopy"])
+#### 模块化与可扩展架构
 
-# 查看可用子类别
-print(benchmark.get_available_subcategories())
-```
+SpectrumLab 采用灵活的模块化设计，其核心组件包括：
 
-### 2. 模型初始化
+- **基准测试组 (Benchmark Group)**：将 SpectrumBench 数据集进行分层组织，支持多种光谱模态和任务类型，并允许用户根据需求灵活组合，创建定制化的评测任务
+- **模型集成 (Model Integration)**：提供统一的框架和标准化的 API，可以无缝接入和评测各类外部模型，无论是商业闭源模型（如 GPT-4o）还是本地部署的开源模型
+- **评估器 (Evaluator)**：作为评估引擎的核心，支持根据不同任务（如选择题、生成题）定制评估指标和协议，确保评估的严谨性和任务适应性
 
-```python
-from spectrumlab.models import GPT4oAPI, DeepSeekAPI, InternVLAPI
+#### 全面的工具链生态系统
 
-# 初始化 GPT-4o 模型
-model = GPT4oAPI()
+提供一个通过 PyPI 分发的 Python 库，集成了数据处理、模型开发、自动评估和可视化等核心模块，极大地简化了整个研究工作流程。
 
-# 初始化 DeepSeek 模型
-model = DeepSeekAPI()
+#### 自动化基准生成 (SpectrumAnnotator)
 
-# 初始化 InternVL 模型
-model = InternVLAPI()
-```
+紧密集成了创新的 SpectrumAnnotator 组件，该组件能利用先进多模态大模型的推理能力，从种子数据集自动生成高质量、多样化的基准测试数据，高效构建评测任务。
 
-### 3. 运行评估
+#### 公开排行榜 (Leaderboards)
 
-```python
-from spectrumlab.evaluator import get_evaluator
+为确保透明度和可复现性，SpectrumLab 建立了一个公开的排行榜系统。该系统系统地追踪和比较各类模型在所有 14 项任务上的性能表现，促进公平竞争和领域的共同进步。
 
-# 获取评估器
-evaluator = get_evaluator("perception")
+## 相关链接
 
-# 运行评估
-results = evaluator.evaluate(
-    data_items=data,
-    model=model,
-    max_out_len=512,
-    save_path="./eval_results"
-)
-
-# 查看结果
-print(f"整体准确率: {results['metrics']['overall']['accuracy']:.2f}%")
-print(f"正确答案数: {results['metrics']['overall']['correct']}")
-print(f"总题目数: {results['metrics']['overall']['total']}")
-```
-
-### 4. 查看详细结果
-
-```python
-# 查看各类别准确率
-for category, metrics in results['metrics']['category_metrics'].items():
-    print(f"{category}: {metrics['accuracy']:.2f}% ({metrics['correct']}/{metrics['total']})")
-
-# 查看各子类别准确率
-for subcategory, metrics in results['metrics']['subcategory_metrics'].items():
-    print(f"{subcategory}: {metrics['accuracy']:.2f}% ({metrics['correct']}/{metrics['total']})")
-```
-
-## 命令行使用
-
-SpectrumLab 也提供了命令行工具：
-
-```bash
-# 查看版本
-spectrumlab --version
-
-# 运行评估（示例）
-spectrumlab eval --model gpt4o --dataset perception
-```
-
-## 高级使用
-
-### 自定义评估器
-
-```python
-from spectrumlab.evaluator.base import BaseEvaluator
-
-class CustomEvaluator(BaseEvaluator):
-    def _build_prompt(self, item):
-        # 自定义提示词构建逻辑
-        pass
-    
-    def _extract_prediction(self, response, item):
-        # 自定义预测结果提取逻辑
-        pass
-    
-    def _calculate_accuracy(self, answer, prediction, item):
-        # 自定义准确率计算逻辑
-        pass
-```
-
-### 处理多模态数据
-
-```python
-# 查看数据项结构
-print(data[0].keys())
-# 可能包含: question, choices, answer, image_path, category, sub_category
-
-# 图像路径会被自动处理
-if data[0]['image_path']:
-    print(f"图像路径: {data[0]['image_path']}")
-```
-
-## 配置环境变量
-
-为了使用 API 模型，需要配置相应的环境变量：
-
-```bash
-# OpenAI GPT-4o
-export OPENAI_API_KEY="your_openai_api_key"
-
-# DeepSeek
-export DEEPSEEK_API_KEY="your_deepseek_api_key"
-
-# InternVL
-export INTERNVL_API_KEY="your_internvl_api_key"
-```
-
-## 更多信息
-
-- 查看 [API 文档](/zh/api) 了解详细的接口说明
-- 了解 [基准测试](/zh/benchmark) 查看评估指标和数据集详情
+- [API 参考](/zh/api) - 了解详细的接口说明和代码示例
+- [基准测试](/zh/benchmark) - 查看评估指标和数据集详情
+- [排行榜](https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard) - 查看模型性能对比
