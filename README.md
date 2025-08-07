@@ -1,10 +1,12 @@
-# SpectrumLab
+<!-- # SpectrumLab -->
 
 <div align="center">
-A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy.
+  <img src="assets/spectrumlab.svg" alt="SpectrumLab" width="600"/>
+  
+  <p><strong>A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy.</strong></p>
 </div>
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Environment Setup
 
@@ -12,7 +14,7 @@ We recommend using conda and uv for environment management:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/SpectrumLab.git
+git clone https://github.com/little1d/SpectrumLab.git
 cd SpectrumLab
 
 # Create conda environment
@@ -23,38 +25,71 @@ pip install uv
 uv pip install -e .
 ```
 
-### One-Click Evaluation
+### Data Setup
 
-1. **Switch to evaluation branch**
+Download benchmark data from Hugging Face:
 
-   ```bash
-   git checkout evaluation
-   ```
+- [SpectrumBench v1.0](https://huggingface.co/datasets/SpectrumWorld/spectrumbench_v_1.0)
 
-2. **Download benchmark data**
+Extract the data to the `data` directory in the project root.
 
-   Benchmark data is hosted on Hugging Face. Please download it from the following link:
+### API Keys Configuration
 
-   [https://huggingface.co/datasets/SpectrumWorld/spectrumbench_v_1.0](https://huggingface.co/SpectrumWorld/spectrumbench_v_1.0/tree/main)
+```bash
+# Copy and edit environment configuration
+cp .env.example .env
+# Configure your API keys in the .env file
+```
 
-   After downloading, extract the data to the `data` directory in the project root.
+## 💻 Usage
 
-3. **Configure model parameters**
+### Python API
 
-   ```bash
-   # Copy and edit environment configuration
-   cp .env.example .env
-   # Configure your API keys in the .env file
-   ```
+```python
+from spectrumlab.benchmark import get_benchmark_group
+from spectrumlab.models import GPT4o
+from spectrumlab.evaluator import get_evaluator
 
-4. **Run evaluation**
+# Load benchmark data
+benchmark = get_benchmark_group("perception")
+data = benchmark.get_data_by_subcategories("all")
 
-   ```bash
-   python run_evaluation.py
-   
-   # Run in background
-   nohup python run_evaluation.py > run_eval.log 2>&1 &
-   ```
+# Initialize model
+model = GPT4o()
+
+# Get evaluator
+evaluator = get_evaluator("perception")
+
+# Run evaluation
+results = evaluator.evaluate(
+    data_items=data,
+    model=model,
+    save_path="./results"
+)
+
+print(f"Overall accuracy: {results['metrics']['overall']['accuracy']:.2f}%")
+```
+
+### Command Line Interface
+
+The CLI provides a simple way to run evaluations:
+
+```bash
+# Basic evaluation
+spectrumlab eval --model gpt4o --level perception
+
+# Specify data path and output directory
+spectrumlab eval --model claude --level signal --data-path ./data --output ./my_results
+
+# Evaluate specific subcategories
+spectrumlab eval --model deepseek --level semantic --subcategories "IR_spectroscopy" "Raman_spectroscopy"
+
+# Customize output length
+spectrumlab eval --model internvl --level generation --max-length 1024
+
+# Get help
+spectrumlab eval --help
+```
 
 ## 🤝 Contributing
 
@@ -63,4 +98,4 @@ We welcome community contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md
 ## Acknowledgments
 
 - **Experiment Tracking**: [SwanLab](https://github.com/SwanHubX/SwanLab/) for experiment management and visualization
-- **Evaluation Framework**: Inspired by [MMAR](https://github.com/ddlBoJack/MMAR)
+- **Choice Evaluator Framework**: Inspired by [MMAR](https://github.com/ddlBoJack/MMAR)

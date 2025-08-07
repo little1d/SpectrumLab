@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "spectrumlab"
 version = "0.0.1"
-description = "Comprehensive toolkit for spectroscopy deep learning: dataset loading, training, evaluation, inference, and more"
+description = "A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy."
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
