@@ -19,3 +19,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.VPNavBarTitle .VPImage {
+    width: 40px !important;
+    height: 40px !important;
+}
