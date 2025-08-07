@@ -44,11 +44,91 @@ jobs:
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
+      - name: Process README for PyPI
+        run: |
+          echo "📝 Processing README for PyPI compatibility..."
+          
+          # Create a backup of original README
+          cp README.md README.original.md
+          
+          # Process README for PyPI
+          python3 << 'EOF'
+          import re
+          
+          # Read the original README
+          with open('README.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+          
+          print("🔄 Processing README content...")
+          
+          # Convert relative image paths to absolute GitHub URLs
+          repo_url = "https://github.com/little1d/SpectrumLab/raw/main"
+          content = re.sub(
+              r'!\[([^\]]*)\]\((?!https?://)([^)]+)\)',
+              f'![\\1]({repo_url}/\\2)',
+              content
+          )
+          
+          # Convert relative links to absolute GitHub URLs
+          content = re.sub(
+              r'\[([^\]]+)\]\((?!https?://)(?!#)([^)]+)\)',
+              f'[\\1](https://github.com/little1d/SpectrumLab/blob/main/\\2)',
+              content
+          )
+          
+          # Remove GitHub-specific badges that might not render well on PyPI
+          # Keep essential badges but remove workflow status badges
+          content = re.sub(
+              r'!\[.*?\]\(https://github\.com/[^/]+/[^/]+/workflows/.*?\)',
+              '',
+              content
+          )
+          
+          # Add PyPI-specific header if needed
+          pypi_header = "<!-- This README is automatically synced from GitHub repository -->\n\n"
+          
+          # Only add header if it's not already there
+          if not content.startswith("<!-- This README is automatically synced"):
+              content = pypi_header + content
+          
+          # Write the processed README
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.write(content)
+          
+          print("✅ README processed successfully for PyPI")
+          EOF
+
       - name: Update version in pyproject.toml
-        run: sed -i "s/version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+        run: |
+          echo "📝 Updating version to $VERSION in pyproject.toml"
+          sed -i "s/version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+
+      - name: Validate pyproject.toml
+        run: |
+          echo "🔍 Validating pyproject.toml..."
+          python3 -c "
+          import tomllib
+          with open('pyproject.toml', 'rb') as f:
+              data = tomllib.load(f)
+          print('✅ pyproject.toml is valid')
+          print(f'📦 Package: {data[\"project\"][\"name\"]}')
+          print(f'🏷️  Version: {data[\"project\"][\"version\"]}')
+          print(f'📄 README: {data[\"project\"].get(\"readme\", \"Not specified\")}')
+          "
 
       - name: Build package
-        run: uv build
+        run: |
+          echo "🔨 Building package..."
+          uv build
+          echo "📦 Package built successfully!"
+          ls -la dist/
+
+      - name: Verify package contents
+        run: |
+          echo "🔍 Verifying package contents..."
+          pip install twine
+          twine check dist/*
+          echo "✅ Package verification completed!"
 
       - name: Publish to TestPyPI
         if: github.event_name == 'workflow_dispatch' && inputs.test_only
@@ -59,7 +139,9 @@ jobs:
             echo "❌ TEST_PYPI_API_KEY secret not found"
             exit 1
           fi
+          echo "🚀 Publishing to TestPyPI..."
           uv publish --publish-url https://test.pypi.org/legacy/
+          echo "✅ Published to TestPyPI successfully!"
 
       - name: Publish to PyPI
         if: |
@@ -72,7 +154,18 @@ jobs:
             echo "❌ PYPI_API_KEY secret not found"
             exit 1
           fi
+          echo "🚀 Publishing to PyPI..."
           uv publish --publish-url https://upload.pypi.org/legacy/
+          echo "✅ Published to PyPI successfully!"
+
+      - name: Restore original README
+        if: always()
+        run: |
+          echo "🔄 Restoring original README..."
+          if [ -f README.original.md ]; then
+            mv README.original.md README.md
+            echo "✅ Original README restored"
+          fi
 
       - name: Upload built artifacts
         uses: actions/upload-artifact@v4
@@ -119,11 +212,61 @@ jobs:
             fi
           fi
 
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          echo "📝 Generating release notes..."
+          cat > release_notes.md << 'EOF'
+          ## 🚀 SpectrumLab Release
+          
+          This release includes the latest updates to SpectrumLab, a pioneering unified platform for spectroscopy research.
+          
+          ### 📦 Installation
+          
+          ```bash
+          pip install spectrumlab
+          ```
+          
+          ### 📚 Documentation
+          
+          - [GitHub Repository](https://github.com/little1d/SpectrumLab)
+          - [PyPI Package](https://pypi.org/project/spectrumlab/)
+          
+          ### 🔗 Links
+          
+          - **Source Code**: [GitHub](https://github.com/little1d/SpectrumLab)
+          - **Documentation**: [README](https://github.com/little1d/SpectrumLab/blob/main/README.md)
+          - **Issues**: [GitHub Issues](https://github.com/little1d/SpectrumLab/issues)
+          
+          EOF
+          echo "✅ Release notes generated"
+
       - name: Release to GitHub
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event_name == 'workflow_dispatch' && format('v{0}', inputs.version) || github.ref_name }}
-          generate_release_notes: true
+          body_path: release_notes.md
           draft: false
           prerelease: ${{ steps.prerelease_check.outputs.prerelease }}
           files: dist/*
+
+  sync-readme-status:
+    name: README Sync Status
+    runs-on: ubuntu-latest
+    needs: build-and-publish-pypi
+    if: always()
+    
+    steps:
+      - name: README Sync Summary
+        run: |
+          echo "📋 README Sync Summary"
+          echo "===================="
+          echo "✅ GitHub README: Always stays as-is"
+          echo "🔄 PyPI README: Automatically processed and synced during package build"
+          echo "📦 Package Status: ${{ needs.build-and-publish-pypi.result }}"
+          
+          if [ "${{ needs.build-and-publish-pypi.result }}" = "success" ]; then
+            echo "🎉 README successfully synced to PyPI!"
+          else
+            echo "❌ README sync failed - check build logs"
+          fi
