@@ -65,33 +65,38 @@ jobs:
           
           print("🔄 Processing README content...")
           
-          # Convert relative image paths to absolute GitHub URLs
-          repo_url = "https://github.com/little1d/SpectrumLab/raw/main"
+          # GitHub raw file base URL
+          raw_url = "https://raw.githubusercontent.com/little1d/SpectrumLab/main"
+          
+          print("🖼️ Converting image paths...")
+          
+          # Convert docs/public image paths to absolute GitHub raw URLs
           content = re.sub(
-              r'!\[([^\]]*)\]\((?!https?://)([^)]+)\)',
-              f'![\\1]({repo_url}/\\2)',
+              r'<img src="docs/public/([^"]+)"',
+              f'<img src="{raw_url}/docs/public/\\1"',
               content
           )
           
-          # Convert relative links to absolute GitHub URLs
+          # Convert markdown image syntax with docs/public paths
           content = re.sub(
-              r'\[([^\]]+)\]\((?!https?://)(?!#)([^)]+)\)',
+              r'!\[([^\]]*)\]\(docs/public/([^)]+)\)',
+              f'![\\1]({raw_url}/docs/public/\\2)',
+              content
+          )
+          
+          print("🔗 Converting relative links to absolute URLs...")
+          
+          # Convert relative links to absolute GitHub URLs (excluding anchor and external links)
+          content = re.sub(
+              r'\[([^\]]+)\]\((?!https?://)(?!#)([^)]+\.md)\)',
               f'[\\1](https://github.com/little1d/SpectrumLab/blob/main/\\2)',
               content
           )
           
-          # Remove GitHub-specific badges that might not render well on PyPI
-          # Keep essential badges but remove workflow status badges
-          content = re.sub(
-              r'!\[.*?\]\(https://github\.com/[^/]+/[^/]+/workflows/.*?\)',
-              '',
-              content
-          )
+          print("📋 Adding PyPI header...")
           
-          # Add PyPI-specific header if needed
+          # Add PyPI-specific header
           pypi_header = "<!-- This README is automatically synced from GitHub repository -->\n\n"
-          
-          # Only add header if it's not already there
           if not content.startswith("<!-- This README is automatically synced"):
               content = pypi_header + content
           
@@ -100,6 +105,10 @@ jobs:
               f.write(content)
           
           print("✅ README processed successfully for PyPI")
+          print("🔍 Changes made:")
+          print("  - Converted docs/public/* image paths to GitHub raw URLs")
+          print("  - Converted relative .md links to GitHub blob URLs")
+          print("  - Added PyPI sync header")
           EOF
 
       - name: Update version in pyproject.toml

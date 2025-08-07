@@ -7,7 +7,7 @@ export const zh = defineConfig({
     description: "A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy.",
 
     head: [
-        ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }]
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: './public/logo.svg' }]
         // ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
         // [
         //     'link',
@@ -21,7 +21,9 @@ export const zh = defineConfig({
 
     themeConfig: {
         siteTitle: "SpectrumLab",
-
+        logo: {
+            src: '/logo.svg',
+        },
         nav: [
             { text: '教程', link: '/zh/tutorial' },
             { text: 'API', link: '/zh/api' },
