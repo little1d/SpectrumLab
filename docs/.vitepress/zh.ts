@@ -5,10 +5,22 @@ export const zh = defineConfig({
     lang: 'zh-CN',
     title: "SpectrumLab",
     description: "A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy.",
+
+    head: [
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }]
+        // ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+        // [
+        //     'link',
+        //     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }
+        // ],
+        // [
+        //     'link',
+        //     { href: 'https://fonts.googleapis.com/css2?family=Roboto&display=swap', rel: 'stylesheet' }
+        // ]
+    ],
+
     themeConfig: {
-        logo: {
-            src: './assets/logo.svg',
-        },
+        siteTitle: "SpectrumLab",
 
         nav: [
             { text: '教程', link: '/zh/tutorial' },
