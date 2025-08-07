@@ -6,12 +6,17 @@ export const zh = defineConfig({
     title: "SpectrumLab",
     description: "一个为系统评估和加速谱学深度学习的平台",
     themeConfig: {
+        logo: {
+            src: './assets/logo.svg',
+        },
+
         nav: [
             { text: '教程', link: '/zh/tutorial' },
             { text: 'API', link: '/zh/api' },
             { text: '基准测试', link: '/zh/benchmark' },
             { text: '排行榜', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
         ],
+
         sidebar: {
             '/': [
                 {
