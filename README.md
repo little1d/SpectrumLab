@@ -1,7 +1,7 @@
 <!-- # SpectrumLab -->
 
 <div align="center">
-  <img src="assets/spectrumlab.svg" alt="SpectrumLab" width="600"/>
+  <img src="docs/assets/spectrumlab.svg" alt="SpectrumLab" width="600"/>
   
   <p><strong>A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy.</strong></p>
 </div>
