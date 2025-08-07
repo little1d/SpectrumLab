@@ -7,11 +7,10 @@ export const zh = defineConfig({
     description: "一个为系统评估和加速谱学深度学习的平台",
     themeConfig: {
         nav: [
-            { text: '首页', link: '/' },
-            { text: '教程', link: '/tutorial' },
-            { text: 'API', link: '/api' },
-            { text: '基准测试', link: '/benchmark' },
-            { text: '排行榜', link: '/leaderboard' },
+            { text: '教程', link: '/zh/tutorial' },
+            { text: 'API', link: '/zh/api' },
+            { text: '基准测试', link: '/zh/benchmark' },
+            { text: '排行榜', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
         ],
         sidebar: {
             '/': [
@@ -19,15 +18,15 @@ export const zh = defineConfig({
                     text: '开始使用',
                     items: [
                         { text: '介绍', link: '/' },
-                        { text: '教程', link: '/tutorial' },
+                        { text: '教程', link: '/zh/tutorial' },
                     ]
                 },
                 {
                     text: '文档',
                     items: [
-                        { text: 'API 参考', link: '/api' },
-                        { text: '基准测试', link: '/benchmark' },
-                        { text: '排行榜', link: '/leaderboard' },
+                        { text: 'API 参考', link: '/zh/api' },
+                        { text: '基准测试', link: '/zh/benchmark' },
+                        { text: '排行榜', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
                     ]
                 }
             ]
