@@ -6,6 +6,8 @@ import { zh } from './zh'
 export default defineConfig({
   base: '/SpectrumLab/',
 
+  head: [['link', { rel: 'icon', href: '/SpectrumLab/assets/logo.svg' }]],
+
   // 清理 URL 中的 .html 后缀
   cleanUrls: true,
 
