@@ -35,6 +35,9 @@ jobs:
       - name: Install uv
         run: pip install uv
 
+      - name: Install dependencies for validation
+        run: pip install toml
+
       - name: Extract version
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
@@ -43,6 +46,7 @@ jobs:
             VERSION=$(echo $GITHUB_REF | sed -n 's/refs\/tags\/v//p')
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "🏷️ Extracted version: $VERSION"
 
       - name: Process README for PyPI
         run: |
@@ -101,20 +105,59 @@ jobs:
       - name: Update version in pyproject.toml
         run: |
           echo "📝 Updating version to $VERSION in pyproject.toml"
+          
+          # Show current version before update
+          echo "Current version in pyproject.toml:"
+          grep 'version = ' pyproject.toml || echo "Version line not found"
+          
+          # Update version
           sed -i "s/version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+          
+          # Show updated version
+          echo "Updated version in pyproject.toml:"
+          grep 'version = ' pyproject.toml
+          
+          # Verify the change was made
+          if grep -q "version = \"$VERSION\"" pyproject.toml; then
+            echo "✅ Version successfully updated to $VERSION"
+          else
+            echo "❌ Failed to update version"
+            exit 1
+          fi
 
       - name: Validate pyproject.toml
         run: |
           echo "🔍 Validating pyproject.toml..."
-          python3 -c "
-          import tomllib
-          with open('pyproject.toml', 'rb') as f:
-              data = tomllib.load(f)
-          print('✅ pyproject.toml is valid')
-          print(f'📦 Package: {data[\"project\"][\"name\"]}')
-          print(f'🏷️  Version: {data[\"project\"][\"version\"]}')
-          print(f'📄 README: {data[\"project\"].get(\"readme\", \"Not specified\")}')
-          "
+          python3 << 'EOF'
+          import toml
+          import sys
+          
+          try:
+              with open('pyproject.toml', 'r') as f:
+                  data = toml.load(f)
+              
+              print('✅ pyproject.toml is valid')
+              print(f'📦 Package: {data["project"]["name"]}')
+              print(f'🏷️  Version: {data["project"]["version"]}')
+              print(f'📄 README: {data["project"].get("readme", "Not specified")}')
+              
+              # Verify version matches expected
+              import os
+              expected_version = os.environ.get('VERSION')
+              actual_version = data["project"]["version"]
+              
+              if expected_version and actual_version == expected_version:
+                  print(f'✅ Version verification passed: {actual_version}')
+              elif expected_version:
+                  print(f'❌ Version mismatch: expected {expected_version}, got {actual_version}')
+                  sys.exit(1)
+              else:
+                  print(f'ℹ️  Version check skipped (no expected version)')
+                  
+          except Exception as e:
+              print(f'❌ pyproject.toml validation failed: {e}')
+              sys.exit(1)
+          EOF
 
       - name: Build package
         run: |
