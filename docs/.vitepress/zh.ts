@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export const zh = defineConfig({
     lang: 'zh-CN',
     title: "SpectrumLab",
-    description: "一个为系统评估和加速谱学深度学习的平台",
+    description: "A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy.",
     themeConfig: {
         logo: {
             src: './assets/logo.svg',

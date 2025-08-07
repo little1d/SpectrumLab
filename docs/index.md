@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "SpectrumLab"
   text: ""
-  tagline: "一个为系统评估和加速谱学深度学习的平台"
+  tagline: "开创性的统一平台，助力系统化与高效的光谱深度学习研究"
   actions:
     - theme: brand
       text: 快速开始
