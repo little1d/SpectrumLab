@@ -1,76 +1,29 @@
-# SpectrumLab
+---
+layout: home
 
-Comprehensive toolkit for spectroscopy deep learning: dataset loading, training, evaluation, inference, and more.
+hero:
+  name: "SpectrumLab"
+  text: ""
+  tagline: "A groundbreaking unified platform that empowers systematic and efficient spectral deep learning research."
+  actions:
+    - theme: brand
+      text: Quick Start
+      link: /zh/tutorial
+    - theme: alt
+      text: View Source Code
+      link: https://github.com/little1d/SpectrumLab
 
-## What is SpectrumLab?
-
-SpectrumLab is a comprehensive toolkit designed for chemical spectroscopy deep learning, providing complete functionality for dataset loading, model training, evaluation, inference, and more.
-
-## Key Features
-
-- 🔬 **Multimodal Evaluation**: Support for image+text multimodal spectroscopy data evaluation
-- 🤖 **Model Integration**: Integrated API interfaces for advanced models like GPT-4o, DeepSeek, InternVL
-- 📊 **Benchmark Suite**: Standardized evaluation metrics and datasets for various spectroscopy tasks
-- 🚀 **Command Line Tool**: Simple CLI interface with batch evaluation and result management
-- 🔧 **Extensibility**: Modular design supporting custom evaluators and models
-
-## Quick Start
-
-### Installation
-
-```bash
-pip install spectrumlab
-```
-
-### Basic Usage
-
-```python
-from spectrumlab.benchmark import get_benchmark_group
-from spectrumlab.models import GPT4oAPI
-from spectrumlab.evaluator import get_evaluator
-
-# Load benchmark data
-benchmark = get_benchmark_group("perception")
-data = benchmark.get_data_by_subcategories("all")
-
-# Initialize model
-model = GPT4oAPI()
-
-# Get evaluator
-evaluator = get_evaluator("perception")
-
-# Run evaluation
-results = evaluator.evaluate(
-    data_items=data,
-    model=model,
-    save_path="./results"
-)
-
-print(f"Overall accuracy: {results['metrics']['overall']['accuracy']:.2f}%")
-```
-
-### Command Line Usage
-
-```bash
-# Run evaluation
-spectrumlab eval --model gpt4o --dataset perception
-```
-
-## Supported Models
-
-- **GPT-4o**: OpenAI's multimodal large language model
-- **DeepSeek**: DeepSeek's multimodal model
-- **InternVL**: Shanghai AI Lab's vision-language model
-
-## Evaluation Task Types
-
-- **Perception Group**: Spectral image understanding and analysis
-- **Semantic Group**: Semantic interpretation of spectral data
-- **Generation Group**: Spectral-related content generation
-- **Signal Group**: Spectral signal processing
-
-## Get Started
-
-- [Tutorial](/en/tutorial) - Learn how to use SpectrumLab
-- [API Reference](/en/api) - Detailed API documentation
-- [Benchmark](/en/benchmark) - View benchmark results and metrics
+features:
+  - title: 🔬 multimodal evaluation。
+    details: It supports multimodal spectral data evaluation combining images and text, and is compatible with various deep learning models.
+  - title: 🤖 Model Integration
+    details: Integrates API interfaces of advanced models such as GPT-4o, Claude, DeepSeek, and Qwen-VL
+  - title: 📊  benchmark
+    details: Provides standardized evaluation processes and metrics, supporting multiple types of spectroscopy tasks.
+  - title: 🏆 Ranking
+    details: A real-time updated model performance leaderboard that supports multi-dimensional comparative analysis.
+  - title: 🚀  command-line tool
+    details: A concise command-line interface that supports batch evaluation and result management.
+  - title: 🔧 easy to extend
+    details: Modular design that supports the rapid integration of custom evaluators and models.
+---
