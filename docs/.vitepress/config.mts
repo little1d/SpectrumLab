@@ -10,7 +10,6 @@ export default defineConfig({
     'zh/:rest*': ':rest*'
   },
 
-  // 清理 URL 中的 .html 后缀
   cleanUrls: true,
 
   // 全局共享配置
@@ -78,7 +77,7 @@ export default defineConfig({
 
   // 国际化配置
   locales: {
-    root: { label: '简体中文', ...zh },
-    en: { label: 'English', ...en },
+    root: { label: '简体中文', lang: 'zh-CN', ...zh },
+    en: { label: 'English', lang: 'en-US', ...en },
   },
 })
