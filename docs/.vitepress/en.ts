@@ -5,12 +5,19 @@ export const en = defineConfig({
     lang: 'en-US',
     title: "SpectrumLab",
     description: "A pioneering unified platform designed to systematize and accelerate deep learning research in spectroscopy",
+    head: [
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }]
+    ],
     themeConfig: {
+        siteTitle: "SpectrumLab",
+        logo: {
+            src: '/logo.svg',
+        },
         nav: [
-            { text: 'Home', link: '/en/' },
             { text: 'Tutorial', link: '/en/tutorial' },
             { text: 'API', link: '/en/api' },
             { text: 'Benchmark', link: '/en/benchmark' },
+            { text: 'Leaderboard', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
         ],
         sidebar: {
             '/en/': [
@@ -26,6 +33,7 @@ export const en = defineConfig({
                     items: [
                         { text: 'API Reference', link: '/en/api' },
                         { text: 'Benchmark', link: '/en/benchmark' },
+                        { text: 'Leaderboard', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
                     ]
                 }
             ]
@@ -34,8 +42,6 @@ export const en = defineConfig({
             message: 'Released under the MIT License',
             copyright: 'Copyright © 2025 SpectrumLab'
         },
-
-        // 英文版本的组件文本
         docFooter: {
             prev: 'Previous page',
             next: 'Next page'
