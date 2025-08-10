@@ -6,6 +6,10 @@ import { zh } from './zh'
 export default defineConfig({
   base: '/SpectrumLab/',
 
+  rewrites: {
+    'zh/:rest*': ':rest*'
+  },
+
   // 清理 URL 中的 .html 后缀
   cleanUrls: true,
 

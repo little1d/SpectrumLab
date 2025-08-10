@@ -17,7 +17,7 @@ export const en = defineConfig({
             { text: 'Tutorial', link: '/en/tutorial' },
             { text: 'API', link: '/en/api' },
             { text: 'Benchmark', link: '/en/benchmark' },
-            { text: 'Ranking', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
+            { text: 'Leaderboard', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
         ],
         sidebar: {
             '/en/': [
@@ -33,7 +33,7 @@ export const en = defineConfig({
                     items: [
                         { text: 'API Reference', link: '/en/api' },
                         { text: 'Benchmark', link: '/en/benchmark' },
-                        { text: 'Ranking', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
+                        { text: 'Leaderboard', link: 'https://huggingface.co/spaces/SpectrumWorld/SpectrumLeaderboard' },
                     ]
                 }
             ]
@@ -42,8 +42,6 @@ export const en = defineConfig({
             message: 'Released under the MIT License',
             copyright: 'Copyright © 2025 SpectrumLab'
         },
-
-        // 英文版本的组件文本
         docFooter: {
             prev: 'Previous page',
             next: 'Next page'
