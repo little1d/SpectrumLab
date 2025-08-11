@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /zh/tutorial
+      link: /tutorial
     - theme: alt
       text: 查看源码
       link: https://github.com/little1d/SpectrumLab
