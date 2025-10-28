@@ -14,7 +14,7 @@ def test_gpt4o_text_generation():
 
 def test_gpt4o_multimodal_generation():
     model = GPT4o()
-    image_path = "playground/models/test.png"
+    image_path = "/Users/little1d/Desktop/Code/SpectrumLab/playground/models/test.jpg"
     image_base64 = encode_image_to_base64(image_path)
     prompt = {
         "text": "Please explain this spectroscopy image.",
@@ -49,4 +49,3 @@ def test_gpt4o_signalgroup_evaluation_parallel():
     results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
-    

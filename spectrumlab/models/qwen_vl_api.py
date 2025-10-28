@@ -26,6 +26,10 @@ class Qwen_VL_Max(BaseAPIModel):
                 "or provide api_key parameter."
             )
 
+        # Ensure base_url has proper protocol for OpenRouter
+        if self.base_url and not self.base_url.startswith(("http://", "https://")):
+            self.base_url = f"https://{self.base_url}"
+
         self.client = OpenAI(
             api_key=self.api_key,
             base_url=self.base_url,
@@ -35,7 +39,10 @@ class Qwen_VL_Max(BaseAPIModel):
         super().__init__(model_name=self.model_name, **kwargs)
 
     def generate(
-        self, prompt: Union[str, Dict[str, Any]], max_tokens: int = 512
+        self,
+        prompt: Union[str, Dict[str, Any]],
+        max_tokens: int = 512,
+        **generation_kwargs,
     ) -> str:
         """
         Generate response supporting both text and multimodal input.
@@ -43,6 +50,7 @@ class Qwen_VL_Max(BaseAPIModel):
         Args:
             prompt: Either text string or multimodal dict
             max_tokens: Maximum tokens to generate
+            **generation_kwargs: Additional generation parameters like temperature, top_p, etc.
 
         Returns:
             Generated response string
@@ -65,15 +73,22 @@ class Qwen_VL_Max(BaseAPIModel):
             text_content = prompt if isinstance(prompt, str) else prompt.get("text", "")
             messages.append({"role": "user", "content": text_content})
 
+        # Prepare API call parameters
+        api_params = {
+            "model": self.model_name,
+            "messages": messages,
+            "max_tokens": max_tokens,
+        }
+
+        # Add any additional generation parameters
+        api_params.update(generation_kwargs)
+
         try:
-            response = self.client.chat.completions.create(
-                model=self.model_name,
-                messages=messages,
-                max_tokens=max_tokens,
-            )
+            response = self.client.chat.completions.create(**api_params)
             return response.choices[0].message.content
         except Exception as e:
             raise RuntimeError(f"Qwen-VL-Max API call failed: {e}")
+
 
 class Qwen_2_5_VL_32B(BaseAPIModel):
     def __init__(
@@ -97,6 +112,10 @@ class Qwen_2_5_VL_32B(BaseAPIModel):
                 "or provide api_key parameter."
             )
 
+        # Ensure base_url has proper protocol for OpenRouter
+        if self.base_url and not self.base_url.startswith(("http://", "https://")):
+            self.base_url = f"https://{self.base_url}"
+
         self.client = OpenAI(
             api_key=self.api_key,
             base_url=self.base_url,
@@ -106,7 +125,10 @@ class Qwen_2_5_VL_32B(BaseAPIModel):
         super().__init__(model_name=self.model_name, **kwargs)
 
     def generate(
-        self, prompt: Union[str, Dict[str, Any]], max_tokens: int = 512
+        self,
+        prompt: Union[str, Dict[str, Any]],
+        max_tokens: int = 512,
+        **generation_kwargs,
     ) -> str:
         """
         Generate response supporting both text and multimodal input.
@@ -114,6 +136,7 @@ class Qwen_2_5_VL_32B(BaseAPIModel):
         Args:
             prompt: Either text string or multimodal dict
             max_tokens: Maximum tokens to generate
+            **generation_kwargs: Additional generation parameters like temperature, top_p, etc.
 
         Returns:
             Generated response string
@@ -136,15 +159,22 @@ class Qwen_2_5_VL_32B(BaseAPIModel):
             text_content = prompt if isinstance(prompt, str) else prompt.get("text", "")
             messages.append({"role": "user", "content": text_content})
 
+        # Prepare API call parameters
+        api_params = {
+            "model": self.model_name,
+            "messages": messages,
+            "max_tokens": max_tokens,
+        }
+
+        # Add any additional generation parameters
+        api_params.update(generation_kwargs)
+
         try:
-            response = self.client.chat.completions.create(
-                model=self.model_name,
-                messages=messages,
-                max_tokens=max_tokens,
-            )
+            response = self.client.chat.completions.create(**api_params)
             return response.choices[0].message.content
         except Exception as e:
             raise RuntimeError(f"Qwen-2.5-VL-32B API call failed: {e}")
+
 
 class Qwen_2_5_VL_72B(BaseAPIModel):
     def __init__(
@@ -168,6 +198,10 @@ class Qwen_2_5_VL_72B(BaseAPIModel):
                 "or provide api_key parameter."
             )
 
+        # Ensure base_url has proper protocol for OpenRouter
+        if self.base_url and not self.base_url.startswith(("http://", "https://")):
+            self.base_url = f"https://{self.base_url}"
+
         self.client = OpenAI(
             api_key=self.api_key,
             base_url=self.base_url,
@@ -177,7 +211,10 @@ class Qwen_2_5_VL_72B(BaseAPIModel):
         super().__init__(model_name=self.model_name, **kwargs)
 
     def generate(
-        self, prompt: Union[str, Dict[str, Any]], max_tokens: int = 512
+        self,
+        prompt: Union[str, Dict[str, Any]],
+        max_tokens: int = 512,
+        **generation_kwargs,
     ) -> str:
         """
         Generate response supporting both text and multimodal input.
@@ -185,6 +222,7 @@ class Qwen_2_5_VL_72B(BaseAPIModel):
         Args:
             prompt: Either text string or multimodal dict
             max_tokens: Maximum tokens to generate
+            **generation_kwargs: Additional generation parameters like temperature, top_p, etc.
 
         Returns:
             Generated response string
@@ -207,13 +245,18 @@ class Qwen_2_5_VL_72B(BaseAPIModel):
             text_content = prompt if isinstance(prompt, str) else prompt.get("text", "")
             messages.append({"role": "user", "content": text_content})
 
+        # Prepare API call parameters
+        api_params = {
+            "model": self.model_name,
+            "messages": messages,
+            "max_tokens": max_tokens,
+        }
+
+        # Add any additional generation parameters
+        api_params.update(generation_kwargs)
+
         try:
-            response = self.client.chat.completions.create(
-                model=self.model_name,
-                messages=messages,
-                max_tokens=max_tokens,
-            )
+            response = self.client.chat.completions.create(**api_params)
             return response.choices[0].message.content
         except Exception as e:
             raise RuntimeError(f"Qwen-2.5-VL-72B API call failed: {e}")
-

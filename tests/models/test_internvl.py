@@ -14,7 +14,7 @@ def test_internvl_text_generation():
 
 def test_internvl_multimodal_generation():
     model = InternVL()
-    image_path = "playground/models/test.jpg"
+    image_path = "/Users/little1d/Desktop/Code/SpectrumLab/playground/models/test.jpg"
     image_base64 = encode_image_to_base64(image_path)
     prompt = {
         "text": "Please explain this spectroscopy image.",
@@ -48,4 +48,3 @@ def test_internvl_signalgroup_evaluation_parallel():
     results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
-    

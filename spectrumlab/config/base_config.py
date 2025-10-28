@@ -50,7 +50,7 @@ class Config:
     # Qwen-VL-Max
     qwen_vl_api_key: str = os.getenv("QWEN_VL_API_KEY")
     qwen_vl_base_url: str = os.getenv("QWEN_VL_BASE_URL")
-    qwen_vl_model_name: str = os.getenv("QWEN_VL")
+    qwen_vl_model_name: str = os.getenv("QWEN_VL_MAX")
 
     # DeepSeek-VL-2
     deepseek_vl_2_api_key: str = os.getenv("DEEPSEEK_VL_2_API_KEY")
@@ -58,13 +58,13 @@ class Config:
     deepseek_vl_2_model_name: str = os.getenv("DEEPSEEK_VL_2")
 
     # Qwen-2.5-VL-32B
-    qwen_2_5_vl_32b_api_key: str = os.getenv("QWEN_2_5_VL_32B_API_KEY")
-    qwen_2_5_vl_32b_base_url: str = os.getenv("QWEN_2_5_VL_32B_BASE_URL")
+    qwen_2_5_vl_32b_api_key: str = os.getenv("QWEN_VL_API_KEY")
+    qwen_2_5_vl_32b_base_url: str = os.getenv("QWEN_VL_BASE_URL")
     qwen_2_5_vl_32b_model_name: str = os.getenv("QWEN_2_5_VL_32B")
 
     # Qwen-2.5-VL-72B
-    qwen_2_5_vl_72b_api_key: str = os.getenv("QWEN_2_5_VL_72B_API_KEY")
-    qwen_2_5_vl_72b_base_url: str = os.getenv("QWEN_2_5_VL_72B_BASE_URL")
+    qwen_2_5_vl_72b_api_key: str = os.getenv("QWEN_VL_API_KEY")
+    qwen_2_5_vl_72b_base_url: str = os.getenv("QWEN_VL_BASE_URL")
     qwen_2_5_vl_72b_model_name: str = os.getenv("QWEN_2_5_VL_72B")
 
     # Llama-Vision-11B

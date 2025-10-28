@@ -29,7 +29,7 @@ uv pip install -e .
 
 Download benchmark data from Hugging Face:
 
-- [SpectrumBench v1.0](https://huggingface.co/datasets/SpectrumWorld/spectrumbench_v_1.0)
+- [SpectrumBench v1.0](https://huggingface.co/SpectrumWorld/spectrumbench_v_1.0/tree/main)
 
 Extract the data to the `data` directory in the project root.
 
@@ -94,6 +94,22 @@ spectrumlab eval --help
 ## 🤝 Contributing
 
 We welcome community contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+## Citation
+
+If you use SpectrumLab in your research, please cite our paper:
+
+```bibtex
+@article{yang2025spectrumworldartificialintelligencefoundation,
+      title={SpectrumWorld: Artificial Intelligence Foundation for Spectroscopy}, 
+      author={Zhuo Yang and Jiaqing Xie and Shuaike Shen and Daolang Wang and Yeyun Chen and Ben Gao and Shuzhou Sun and Biqing Qi and Dongzhan Zhou and Lei Bai and Linjiang Chen and Shufei Zhang and Qinying Gu and Jun Jiang and Tianfan Fu and Yuqiang Li},
+      year={2025},
+      eprint={2508.01188},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2508.01188}, 
+}
+```
 
 ## Acknowledgments
 

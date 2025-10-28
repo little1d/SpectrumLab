@@ -11,7 +11,6 @@
 
 # Environment configuration
 *.gradio/
-.env
 .python-version
 
 # Local data & playground
@@ -20,3 +19,8 @@ data_test/
 playground/
 swanlog/
 log
+/ablation_internvl3_78b_baselines_evaluation_results
+/ablation_internvl3_78b_temp_0.5_evaluation_results
+
+
+.env

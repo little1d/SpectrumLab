@@ -39,6 +39,7 @@ def test_qwen_2_5_vl_32b_signalgroup_evaluation():
     assert "metrics" in results
     assert "overall" in results["metrics"]
 
+
 def test_qwen_2_5_vl_32b_signalgroup_evaluation_parallel():
     model = Qwen_2_5_VL_32B()
     signal_group = SignalGroup("data")
@@ -47,4 +48,3 @@ def test_qwen_2_5_vl_32b_signalgroup_evaluation_parallel():
     results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
-    

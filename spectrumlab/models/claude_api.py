@@ -216,6 +216,7 @@ class Claude_Haiku_3_5(BaseAPIModel):
         except Exception as e:
             raise RuntimeError(f"Claude API call failed: {e}")
 
+
 class Claude_Sonnet_4(BaseAPIModel):
     def __init__(
         self,
@@ -285,4 +286,3 @@ class Claude_Sonnet_4(BaseAPIModel):
             return response.choices[0].message.content
         except Exception as e:
             raise RuntimeError(f"Claude API call failed: {e}")
-

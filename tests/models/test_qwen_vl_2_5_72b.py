@@ -48,4 +48,3 @@ def test_qwen_2_5_vl_72b_signalgroup_evaluation_parallel():
     results = evaluator.evaluate_many(data_items=data, model=model, save_path=None)
     assert "metrics" in results
     assert "overall" in results["metrics"]
-    
